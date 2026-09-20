@@ -1,3 +1,4 @@
+import type { ReactElement } from 'react';
 import type { ViewName } from '../types';
 
 function OverviewIcon() {
@@ -49,7 +50,7 @@ function AccountIcon() {
 interface NavItem {
   view: ViewName;
   label: string;
-  icon: () => JSX.Element;
+  icon: () => ReactElement;
 }
 
 const NAV_ITEMS: NavItem[] = [

@@ -1,4 +1,5 @@
 import { useRef } from 'react';
+import type { ReactElement } from 'react';
 import { useAuth } from '../AuthContext';
 import { AuthNav } from './AuthNav';
 import { AuthPanel } from './AuthPanel';
@@ -47,7 +48,7 @@ const STATS = [
   { value: '6', label: 'Task types', detail: 'vqa · captioning · grounding · change ×2 · fusion' },
 ];
 
-const CHIP_ICONS: Record<string, JSX.Element> = {
+const CHIP_ICONS: Record<string, ReactElement> = {
   vqa: (
     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" aria-hidden="true">
       <circle cx="8" cy="8" r="6" stroke="currentColor" strokeWidth="1.3" />
