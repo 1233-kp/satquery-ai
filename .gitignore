@@ -1,0 +1,6 @@
+# Claude Code project-local tooling, not project source
+.claude/
+
+# OS/editor junk
+.DS_Store
+Thumbs.db

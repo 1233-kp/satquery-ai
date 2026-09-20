@@ -1,0 +1,1457 @@
+{
+  "dataset": "CDVQA (YZHJessica/CDVQA)",
+  "split": "Val",
+  "summary": {
+    "change_ratio_types": {
+      "n": 35,
+      "exact_match_accuracy": 0.0
+    },
+    "change_or_not": {
+      "n": 69,
+      "exact_match_accuracy": 0.0
+    },
+    "increase_or_not": {
+      "n": 22,
+      "exact_match_accuracy": 0.0
+    },
+    "change_to_what": {
+      "n": 20,
+      "exact_match_accuracy": 0.0
+    },
+    "largest_change": {
+      "n": 10,
+      "exact_match_accuracy": 0.0
+    },
+    "change_ratio": {
+      "n": 9,
+      "exact_match_accuracy": 0.0
+    },
+    "decrease_or_not": {
+      "n": 25,
+      "exact_match_accuracy": 0.0
+    },
+    "smallest_change": {
+      "n": 10,
+      "exact_match_accuracy": 0.0
+    }
+  },
+  "overall_accuracy": 0.0,
+  "by_type": {
+    "change_ratio_types": [
+      {
+        "file_name": "00291.png",
+        "question": "What is the change proportion of water in the pre-event image?",
+        "ground_truth": "0",
+        "prediction": "No significant change was detected between the two images.",
+        "exact_match": false
+      },
+      {
+        "file_name": "07653.png",
+        "question": "What is the change percentage of non-vegetated ground surface in the pre-change image?",
+        "ground_truth": "0",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 4.41% of the scene (2891/65536 pixels). The change is concentrated in the bottom-right (53%) and top-right (47%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "03337.png",
+        "question": "What is the change ratio of water in the post-event image?",
+        "ground_truth": "0",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 0.02% of the scene (10/65536 pixels). The change is concentrated in the bottom-right (100%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "02871.png",
+        "question": "What is the change proportion of water in the pre-event image?",
+        "ground_truth": "0",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 0.56% of the scene (367/65536 pixels). The change is concentrated in the bottom-right (100%).\n\n[ood_guard: Input imagery characteristics differ substantially from this model's training distribution (pixel intensity distribution differs sharply from the training imagery (max channel z-score=3.0, threshold=3.0)); confidence is low and results may be unreliable.]",
+        "exact_match": false
+      },
+      {
+        "file_name": "07040.png",
+        "question": "What is the change percentage of water in the pre-change image?",
+        "ground_truth": "0",
+        "prediction": "A moderate level of change was detected between the two dates, affecting approximately 5.96% of the scene (3906/65536 pixels). The change is concentrated in the bottom-left (100%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "10670.png",
+        "question": "What is the change ratio of trees in the pre-change image?",
+        "ground_truth": "0",
+        "prediction": "No significant change was detected between the two images.",
+        "exact_match": false
+      },
+      {
+        "file_name": "05297.png",
+        "question": "What is the change proportion of trees in the post-event image?",
+        "ground_truth": "0_to_10",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 0.61% of the scene (400/65536 pixels). The change is concentrated in the top-left (80%) and top-right (20%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "03514.png",
+        "question": "How much area of low vegetation has changed in the first image?",
+        "ground_truth": "0_to_10",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 2.56% of the scene (1675/65536 pixels). The change is concentrated in the bottom-left (54%) and top-left (45%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "01520.png",
+        "question": "What is the change ratio of trees in the pre-event image?",
+        "ground_truth": "0",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 0.79% of the scene (519/65536 pixels). The change is concentrated in the top-right (93%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "00336.png",
+        "question": "What is the change ratio of trees in the pre-change image?",
+        "ground_truth": "0_to_10",
+        "prediction": "No significant change was detected between the two images.",
+        "exact_match": false
+      },
+      {
+        "file_name": "00529.png",
+        "question": "What is the change ratio of water in the second image?",
+        "ground_truth": "0_to_10",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 2.14% of the scene (1400/65536 pixels). The change is concentrated in the bottom-left (47%) and bottom-right (38%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "03924.png",
+        "question": "What is the change ratio of trees in the post-change image?",
+        "ground_truth": "0",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 3.99% of the scene (2613/65536 pixels). The change is concentrated in the bottom-left (59%) and top-left (33%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "00747.png",
+        "question": "What is the change proportion of playgrounds in the pre-event image?",
+        "ground_truth": "0",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 0.01% of the scene (4/65536 pixels). The change is concentrated in the top-left (100%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "00197.png",
+        "question": "What is the change percentage of playgrounds in the first image?",
+        "ground_truth": "0",
+        "prediction": "No significant change was detected between the two images.",
+        "exact_match": false
+      },
+      {
+        "file_name": "06731.png",
+        "question": "What is the change ratio of buildings in the post-change image?",
+        "ground_truth": "0_to_10",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 0.23% of the scene (149/65536 pixels). The change is concentrated in the bottom-left (100%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "02206.png",
+        "question": "What is the change proportion of playgrounds in the second image?",
+        "ground_truth": "0",
+        "prediction": "No significant change was detected between the two images.",
+        "exact_match": false
+      },
+      {
+        "file_name": "00125.png",
+        "question": "How much area of buildings has changed in the first image?",
+        "ground_truth": "0_to_10",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 0.27% of the scene (175/65536 pixels). The change is concentrated in the top-right (100%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "03350.png",
+        "question": "What is the change ratio of water in the post-event image?",
+        "ground_truth": "0",
+        "prediction": "No significant change was detected between the two images.",
+        "exact_match": false
+      },
+      {
+        "file_name": "04020.png",
+        "question": "How much area of buildings has changed in the pre-change image?",
+        "ground_truth": "0_to_10",
+        "prediction": "No significant change was detected between the two images.",
+        "exact_match": false
+      },
+      {
+        "file_name": "09550.png",
+        "question": "What is the change percentage of trees in the second image?",
+        "ground_truth": "0",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 0.99% of the scene (646/65536 pixels). The change is concentrated in the top-left (73%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "01539.png",
+        "question": "What is the change ratio of buildings in the post-change image?",
+        "ground_truth": "10_to_20",
+        "prediction": "A moderate level of change was detected between the two dates, affecting approximately 6.98% of the scene (4575/65536 pixels). The change is concentrated in the bottom-left (45%) and bottom-right (36%) and top-left (19%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "10723.png",
+        "question": "What is the change ratio of playgrounds in the first image?",
+        "ground_truth": "0",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 0.61% of the scene (398/65536 pixels). The change is concentrated in the bottom-left (81%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "02867.png",
+        "question": "What is the change ratio of non-vegetated ground surface in the post-change image?",
+        "ground_truth": "0_to_10",
+        "prediction": "No significant change was detected between the two images.",
+        "exact_match": false
+      },
+      {
+        "file_name": "04320.png",
+        "question": "What is the change percentage of water in the post-change image?",
+        "ground_truth": "0",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 0.87% of the scene (572/65536 pixels). The change is concentrated in the bottom-left (60%) and bottom-right (40%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "09665.png",
+        "question": "What is the change ratio of low vegetation in the pre-event image?",
+        "ground_truth": "0",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 0.76% of the scene (499/65536 pixels). The change is concentrated in the top-right (100%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "00262.png",
+        "question": "What is the change proportion of trees in the pre-event image?",
+        "ground_truth": "20_to_30",
+        "prediction": "No significant change was detected between the two images.",
+        "exact_match": false
+      },
+      {
+        "file_name": "01012.png",
+        "question": "What is the change ratio of water in the post-change image?",
+        "ground_truth": "0",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 0.24% of the scene (155/65536 pixels). The change is concentrated in the bottom-right (100%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "06633.png",
+        "question": "What is the change proportion of playgrounds in the post-event image?",
+        "ground_truth": "0",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 0.11% of the scene (70/65536 pixels). The change is concentrated in the top-right (100%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "03643.png",
+        "question": "What is the change ratio of non-vegetated ground surface in the pre-event image?",
+        "ground_truth": "0_to_10",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 0.3% of the scene (197/65536 pixels). The change is concentrated in the bottom-left (87%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "04515.png",
+        "question": "What is the change ratio of playgrounds in the pre-event image?",
+        "ground_truth": "0",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 0.31% of the scene (204/65536 pixels). The change is concentrated in the top-right (47%) and bottom-right (27%) and top-left (26%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "02871.png",
+        "question": "What is the change ratio of non-vegetated ground surface in the pre-event image?",
+        "ground_truth": "20_to_30",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 0.56% of the scene (367/65536 pixels). The change is concentrated in the bottom-right (100%).\n\n[ood_guard: Input imagery characteristics differ substantially from this model's training distribution (pixel intensity distribution differs sharply from the training imagery (max channel z-score=3.0, threshold=3.0)); confidence is low and results may be unreliable.]",
+        "exact_match": false
+      },
+      {
+        "file_name": "00119.png",
+        "question": "What is the change ratio of buildings in the pre-event image?",
+        "ground_truth": "0_to_10",
+        "prediction": "No significant change was detected between the two images.",
+        "exact_match": false
+      },
+      {
+        "file_name": "02733.png",
+        "question": "What is the change ratio of non-vegetated ground surface in the first image?",
+        "ground_truth": "0_to_10",
+        "prediction": "No significant change was detected between the two images.",
+        "exact_match": false
+      },
+      {
+        "file_name": "06642.png",
+        "question": "How much area of trees has changed in the second image?",
+        "ground_truth": "0",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 0.89% of the scene (581/65536 pixels). The change is concentrated in the bottom-right (100%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "11334.png",
+        "question": "What is the change proportion of non-vegetated ground surface in the first image?",
+        "ground_truth": "0_to_10",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 0.12% of the scene (76/65536 pixels). The change is concentrated in the bottom-right (100%).",
+        "exact_match": false
+      }
+    ],
+    "change_or_not": [
+      {
+        "file_name": "08694.png",
+        "question": "Did the areas of non-vegetated ground surface change?",
+        "ground_truth": "yes",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 2.09% of the scene (1369/65536 pixels). The change is concentrated in the top-right (56%) and bottom-right (44%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "04059.png",
+        "question": "Did the areas of low vegetation change in the post-change image?",
+        "ground_truth": "no",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 0.15% of the scene (100/65536 pixels). The change is concentrated in the bottom-left (100%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "09813.png",
+        "question": "Did the areas of buildings change?",
+        "ground_truth": "yes",
+        "prediction": "No significant change was detected between the two images.",
+        "exact_match": false
+      },
+      {
+        "file_name": "10266.png",
+        "question": "Did the areas of trees change in the post-change image?",
+        "ground_truth": "yes",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 1.96% of the scene (1283/65536 pixels). The change is concentrated in the top-left (85%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "07044.png",
+        "question": "Have the regions of buildings changed in the first image?",
+        "ground_truth": "yes",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 4.37% of the scene (2864/65536 pixels). The change is concentrated in the top-left (93%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "03999.png",
+        "question": "Did the regions of buildings change in the pre-event image?",
+        "ground_truth": "yes",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 0.5% of the scene (327/65536 pixels). The change is concentrated in the top-left (100%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "10668.png",
+        "question": "Did the areas of trees change in the post-change image?",
+        "ground_truth": "no",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 2.12% of the scene (1390/65536 pixels). The change is concentrated in the bottom-right (100%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "04606.png",
+        "question": "Have the regions of playgrounds changed?",
+        "ground_truth": "no",
+        "prediction": "A moderate level of change was detected between the two dates, affecting approximately 13.84% of the scene (9072/65536 pixels). The change is concentrated in the top-left (91%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "11011.png",
+        "question": "Have the regions of water changed in the second image?",
+        "ground_truth": "yes",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 0.0% of the scene (1/65536 pixels). The change is concentrated in the top-right (100%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "00666.png",
+        "question": "Have the regions of non-vegetated ground surface changed?",
+        "ground_truth": "yes",
+        "prediction": "No significant change was detected between the two images.",
+        "exact_match": false
+      },
+      {
+        "file_name": "01417.png",
+        "question": "Have the areas of playgrounds changed?",
+        "ground_truth": "no",
+        "prediction": "No significant change was detected between the two images.",
+        "exact_match": false
+      },
+      {
+        "file_name": "05420.png",
+        "question": "Have the areas of water changed in the second image?",
+        "ground_truth": "no",
+        "prediction": "No significant change was detected between the two images.",
+        "exact_match": false
+      },
+      {
+        "file_name": "01542.png",
+        "question": "Did the areas of non-vegetated ground surface change in the post-change image?",
+        "ground_truth": "yes",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 2.84% of the scene (1862/65536 pixels). The change is concentrated in the top-left (94%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "02733.png",
+        "question": "Have the regions of low vegetation changed in the second image?",
+        "ground_truth": "no",
+        "prediction": "No significant change was detected between the two images.",
+        "exact_match": false
+      },
+      {
+        "file_name": "01832.png",
+        "question": "Have the regions of buildings changed?",
+        "ground_truth": "yes",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 0.0% of the scene (2/65536 pixels). The change is concentrated in the bottom-left (100%).\n\n[ood_guard: Input imagery characteristics differ substantially from this model's training distribution (pixel intensity distribution differs sharply from the training imagery (max channel z-score=3.4, threshold=3.0)); confidence is low and results may be unreliable.]",
+        "exact_match": false
+      },
+      {
+        "file_name": "00798.png",
+        "question": "Did the areas of playgrounds change in the pre-change image?",
+        "ground_truth": "no",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 0.14% of the scene (93/65536 pixels). The change is concentrated in the top-left (100%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "09436.png",
+        "question": "Did the regions of trees change?",
+        "ground_truth": "no",
+        "prediction": "A moderate level of change was detected between the two dates, affecting approximately 7.53% of the scene (4934/65536 pixels). The change is concentrated in the bottom-right (43%) and top-right (32%) and bottom-left (24%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "04971.png",
+        "question": "Did the areas of water change?",
+        "ground_truth": "no",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 3.07% of the scene (2010/65536 pixels). The change is concentrated in the bottom-left (97%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "02504.png",
+        "question": "Did the areas of buildings change in the post-change image?",
+        "ground_truth": "yes",
+        "prediction": "No significant change was detected between the two images.",
+        "exact_match": false
+      },
+      {
+        "file_name": "00569.png",
+        "question": "Did the areas of playgrounds change?",
+        "ground_truth": "no",
+        "prediction": "No significant change was detected between the two images.",
+        "exact_match": false
+      },
+      {
+        "file_name": "00262.png",
+        "question": "Did the areas of water change?",
+        "ground_truth": "no",
+        "prediction": "No significant change was detected between the two images.",
+        "exact_match": false
+      },
+      {
+        "file_name": "02239.png",
+        "question": "Did the areas of buildings change in the post-change image?",
+        "ground_truth": "yes",
+        "prediction": "No significant change was detected between the two images.",
+        "exact_match": false
+      },
+      {
+        "file_name": "00339.png",
+        "question": "Have the regions of non-vegetated ground surface changed in the second image?",
+        "ground_truth": "yes",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 0.8% of the scene (526/65536 pixels). The change is concentrated in the bottom-right (98%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "04950.png",
+        "question": "Did the areas of water change?",
+        "ground_truth": "no",
+        "prediction": "No significant change was detected between the two images.\n\n[ood_guard: Input imagery characteristics differ substantially from this model's training distribution (pixel intensity distribution differs sharply from the training imagery (max channel z-score=3.1, threshold=3.0)); confidence is low and results may be unreliable.]",
+        "exact_match": false
+      },
+      {
+        "file_name": "11764.png",
+        "question": "Have the regions of water changed in the second image?",
+        "ground_truth": "no",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 2.47% of the scene (1622/65536 pixels). The change is concentrated in the top-right (58%) and bottom-right (29%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "04556.png",
+        "question": "Have the areas of playgrounds changed?",
+        "ground_truth": "no",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 3.06% of the scene (2007/65536 pixels). The change is concentrated in the top-right (34%) and bottom-right (32%) and top-left (30%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "03516.png",
+        "question": "Did the areas of water change?",
+        "ground_truth": "no",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 0.93% of the scene (607/65536 pixels). The change is concentrated in the top-right (76%) and top-left (24%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "00728.png",
+        "question": "Did the areas of buildings change?",
+        "ground_truth": "yes",
+        "prediction": "No significant change was detected between the two images.",
+        "exact_match": false
+      },
+      {
+        "file_name": "11227.png",
+        "question": "Did the regions of water change?",
+        "ground_truth": "no",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 0.79% of the scene (517/65536 pixels). The change is concentrated in the top-left (68%) and bottom-right (19%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "07243.png",
+        "question": "Did the regions of low vegetation change in the post-event image?",
+        "ground_truth": "no",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 2.31% of the scene (1515/65536 pixels). The change is concentrated in the top-right (78%) and top-left (22%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "02508.png",
+        "question": "Did the regions of playgrounds change in the post-event image?",
+        "ground_truth": "no",
+        "prediction": "No significant change was detected between the two images.",
+        "exact_match": false
+      },
+      {
+        "file_name": "01719.png",
+        "question": "Have the areas of low vegetation changed?",
+        "ground_truth": "yes",
+        "prediction": "No significant change was detected between the two images.",
+        "exact_match": false
+      },
+      {
+        "file_name": "08023.png",
+        "question": "Have the areas of water changed in the first image?",
+        "ground_truth": "no",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 4.42% of the scene (2895/65536 pixels). The change is concentrated in the top-left (100%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "04177.png",
+        "question": "Did the regions of water change?",
+        "ground_truth": "yes",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 2.6% of the scene (1703/65536 pixels). The change is concentrated in the top-right (82%) and bottom-right (18%).\n\n[ood_guard: Input imagery characteristics differ substantially from this model's training distribution (pixel intensity distribution differs sharply from the training imagery (max channel z-score=3.9, threshold=3.0)); confidence is low and results may be unreliable.]",
+        "exact_match": false
+      },
+      {
+        "file_name": "01520.png",
+        "question": "Have the regions of trees changed in the second image?",
+        "ground_truth": "yes",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 0.79% of the scene (519/65536 pixels). The change is concentrated in the top-right (93%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "06354.png",
+        "question": "Did the regions of low vegetation change?",
+        "ground_truth": "yes",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 0.38% of the scene (251/65536 pixels). The change is concentrated in the bottom-right (84%) and bottom-left (16%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "08290.png",
+        "question": "Have the regions of low vegetation changed?",
+        "ground_truth": "yes",
+        "prediction": "No significant change was detected between the two images.\n\n[ood_guard: Input imagery characteristics differ substantially from this model's training distribution (pixel intensity distribution differs sharply from the training imagery (max channel z-score=4.4, threshold=3.0)); confidence is low and results may be unreliable.]",
+        "exact_match": false
+      },
+      {
+        "file_name": "01128.png",
+        "question": "Did the areas of buildings change?",
+        "ground_truth": "yes",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 0.84% of the scene (552/65536 pixels). The change is concentrated in the top-left (78%) and bottom-left (22%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "05620.png",
+        "question": "Have the regions of water changed in the second image?",
+        "ground_truth": "no",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 0.1% of the scene (64/65536 pixels). The change is concentrated in the top-left (100%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "02239.png",
+        "question": "Did the regions of low vegetation change in the post-event image?",
+        "ground_truth": "no",
+        "prediction": "No significant change was detected between the two images.",
+        "exact_match": false
+      },
+      {
+        "file_name": "02181.png",
+        "question": "Have the areas of non-vegetated ground surface changed in the first image?",
+        "ground_truth": "yes",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 1.3% of the scene (853/65536 pixels). The change is concentrated in the bottom-right (100%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "09777.png",
+        "question": "Have the areas of buildings changed in the second image?",
+        "ground_truth": "yes",
+        "prediction": "A moderate level of change was detected between the two dates, affecting approximately 9.75% of the scene (6387/65536 pixels). The change is concentrated in the top-right (78%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "07542.png",
+        "question": "Did the regions of playgrounds change?",
+        "ground_truth": "no",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 0.49% of the scene (323/65536 pixels). The change is concentrated in the top-left (50%) and top-right (39%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "06533.png",
+        "question": "Have the regions of buildings changed?",
+        "ground_truth": "yes",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 0.02% of the scene (13/65536 pixels). The change is concentrated in the top-right (100%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "02072.png",
+        "question": "Have the regions of trees changed in the first image?",
+        "ground_truth": "yes",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 1.82% of the scene (1190/65536 pixels). The change is concentrated in the bottom-right (35%) and top-right (34%) and top-left (31%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "03187.png",
+        "question": "Have the areas of playgrounds changed?",
+        "ground_truth": "no",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 3.81% of the scene (2498/65536 pixels). The change is concentrated in the top-left (59%) and bottom-right (37%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "04537.png",
+        "question": "Have the areas of trees changed in the second image?",
+        "ground_truth": "no",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 3.45% of the scene (2259/65536 pixels). The change is concentrated in the bottom-left (82%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "01520.png",
+        "question": "Did the regions of trees change in the pre-event image?",
+        "ground_truth": "no",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 0.79% of the scene (519/65536 pixels). The change is concentrated in the top-right (93%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "01027.png",
+        "question": "Did the regions of low vegetation change?",
+        "ground_truth": "yes",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 2.78% of the scene (1823/65536 pixels). The change is concentrated in the top-left (77%) and bottom-left (22%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "07259.png",
+        "question": "Have the areas of low vegetation changed?",
+        "ground_truth": "yes",
+        "prediction": "No significant change was detected between the two images.",
+        "exact_match": false
+      },
+      {
+        "file_name": "01320.png",
+        "question": "Have the regions of water changed in the first image?",
+        "ground_truth": "no",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 0.87% of the scene (573/65536 pixels). The change is concentrated in the top-right (82%) and bottom-right (18%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "09550.png",
+        "question": "Have the regions of playgrounds changed in the first image?",
+        "ground_truth": "no",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 0.99% of the scene (646/65536 pixels). The change is concentrated in the top-left (73%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "00662.png",
+        "question": "Did the areas of buildings change in the pre-change image?",
+        "ground_truth": "yes",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 0.01% of the scene (7/65536 pixels). The change is concentrated in the top-right (100%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "00761.png",
+        "question": "Have the regions of non-vegetated ground surface changed?",
+        "ground_truth": "yes",
+        "prediction": "No significant change was detected between the two images.",
+        "exact_match": false
+      },
+      {
+        "file_name": "05655.png",
+        "question": "Did the regions of playgrounds change in the post-event image?",
+        "ground_truth": "no",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 2.59% of the scene (1698/65536 pixels). The change is concentrated in the bottom-right (53%) and top-right (35%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "04024.png",
+        "question": "Did the areas of non-vegetated ground surface change in the post-change image?",
+        "ground_truth": "yes",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 0.83% of the scene (546/65536 pixels). The change is concentrated in the top-right (94%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "00825.png",
+        "question": "Have the regions of playgrounds changed in the second image?",
+        "ground_truth": "no",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 0.04% of the scene (28/65536 pixels). The change is concentrated in the bottom-right (100%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "00753.png",
+        "question": "Did the areas of buildings change in the post-change image?",
+        "ground_truth": "yes",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 0.03% of the scene (18/65536 pixels). The change is concentrated in the bottom-right (100%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "03664.png",
+        "question": "Did the areas of non-vegetated ground surface change?",
+        "ground_truth": "yes",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 1.39% of the scene (913/65536 pixels). The change is concentrated in the top-right (94%).\n\n[ood_guard: Input imagery characteristics differ substantially from this model's training distribution (pixel intensity distribution differs sharply from the training imagery (max channel z-score=3.9, threshold=3.0)); confidence is low and results may be unreliable.]",
+        "exact_match": false
+      },
+      {
+        "file_name": "11757.png",
+        "question": "Did the regions of water change?",
+        "ground_truth": "yes",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 0.08% of the scene (53/65536 pixels). The change is concentrated in the top-right (100%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "08747.png",
+        "question": "Have the areas of low vegetation changed?",
+        "ground_truth": "yes",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 4.67% of the scene (3062/65536 pixels). The change is concentrated in the bottom-right (89%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "01924.png",
+        "question": "Did the areas of non-vegetated ground surface change?",
+        "ground_truth": "yes",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 0.01% of the scene (9/65536 pixels). The change is concentrated in the bottom-right (100%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "11370.png",
+        "question": "Did the areas of low vegetation change?",
+        "ground_truth": "yes",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 0.4% of the scene (260/65536 pixels). The change is concentrated in the bottom-left (100%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "07715.png",
+        "question": "Have the areas of playgrounds changed in the first image?",
+        "ground_truth": "no",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 0.01% of the scene (8/65536 pixels). The change is concentrated in the top-right (100%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "02180.png",
+        "question": "Have the areas of trees changed in the first image?",
+        "ground_truth": "no",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 0.04% of the scene (26/65536 pixels). The change is concentrated in the bottom-right (100%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "01027.png",
+        "question": "Did the regions of playgrounds change?",
+        "ground_truth": "no",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 2.78% of the scene (1823/65536 pixels). The change is concentrated in the top-left (77%) and bottom-left (22%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "06565.png",
+        "question": "Have the regions of buildings changed in the second image?",
+        "ground_truth": "yes",
+        "prediction": "No significant change was detected between the two images.",
+        "exact_match": false
+      },
+      {
+        "file_name": "00539.png",
+        "question": "Have the regions of non-vegetated ground surface changed in the second image?",
+        "ground_truth": "yes",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 0.2% of the scene (134/65536 pixels). The change is concentrated in the bottom-right (100%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "07392.png",
+        "question": "Did the areas of buildings change in the post-change image?",
+        "ground_truth": "yes",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 1.27% of the scene (830/65536 pixels). The change is concentrated in the bottom-left (79%) and bottom-right (21%).",
+        "exact_match": false
+      }
+    ],
+    "increase_or_not": [
+      {
+        "file_name": "04515.png",
+        "question": "Did the regions of low vegetation increase?",
+        "ground_truth": "no",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 0.31% of the scene (204/65536 pixels). The change is concentrated in the top-right (47%) and bottom-right (27%) and top-left (26%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "02867.png",
+        "question": "Did the areas of playgrounds increase?",
+        "ground_truth": "no",
+        "prediction": "No significant change was detected between the two images.",
+        "exact_match": false
+      },
+      {
+        "file_name": "10994.png",
+        "question": "Have the regions of buildings increased?",
+        "ground_truth": "yes",
+        "prediction": "A moderate level of change was detected between the two dates, affecting approximately 8.31% of the scene (5449/65536 pixels). The change is concentrated in the top-right (40%) and top-left (34%) and bottom-left (20%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "11757.png",
+        "question": "Did the regions of trees increase?",
+        "ground_truth": "yes",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 0.08% of the scene (53/65536 pixels). The change is concentrated in the top-right (100%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "03187.png",
+        "question": "Have the areas of buildings increased?",
+        "ground_truth": "no",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 3.81% of the scene (2498/65536 pixels). The change is concentrated in the top-left (59%) and bottom-right (37%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "00119.png",
+        "question": "Did the areas of water increase?",
+        "ground_truth": "no",
+        "prediction": "No significant change was detected between the two images.",
+        "exact_match": false
+      },
+      {
+        "file_name": "10345.png",
+        "question": "Have the regions of trees increased?",
+        "ground_truth": "no",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 0.04% of the scene (26/65536 pixels). The change is concentrated in the bottom-left (100%).\n\n[ood_guard: Input imagery characteristics differ substantially from this model's training distribution (pixel intensity distribution differs sharply from the training imagery (max channel z-score=3.2, threshold=3.0)); confidence is low and results may be unreliable.]",
+        "exact_match": false
+      },
+      {
+        "file_name": "00599.png",
+        "question": "Did the regions of low vegetation increase?",
+        "ground_truth": "yes",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 1.1% of the scene (718/65536 pixels). The change is concentrated in the bottom-left (59%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "01399.png",
+        "question": "Did the regions of trees increase?",
+        "ground_truth": "yes",
+        "prediction": "No significant change was detected between the two images.",
+        "exact_match": false
+      },
+      {
+        "file_name": "09394.png",
+        "question": "Have the areas of non-vegetated ground surface increased?",
+        "ground_truth": "no",
+        "prediction": "A high level of change was detected between the two dates, affecting approximately 17.56% of the scene (11506/65536 pixels). The change is concentrated in the bottom-right (40%) and top-right (38%) and top-left (16%).\n\n[ood_guard: Input imagery characteristics differ substantially from this model's training distribution (pixel intensity distribution differs sharply from the training imagery (max channel z-score=4.5, threshold=3.0)); confidence is low and results may be unreliable.]",
+        "exact_match": false
+      },
+      {
+        "file_name": "02508.png",
+        "question": "Have the regions of non-vegetated ground surface increased?",
+        "ground_truth": "no",
+        "prediction": "No significant change was detected between the two images.",
+        "exact_match": false
+      },
+      {
+        "file_name": "05740.png",
+        "question": "Did the areas of playgrounds increase?",
+        "ground_truth": "no",
+        "prediction": "No significant change was detected between the two images.",
+        "exact_match": false
+      },
+      {
+        "file_name": "00661.png",
+        "question": "Have the areas of non-vegetated ground surface increased?",
+        "ground_truth": "no",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 1.15% of the scene (755/65536 pixels). The change is concentrated in the top-left (54%) and bottom-left (46%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "02867.png",
+        "question": "Have the areas of low vegetation increased?",
+        "ground_truth": "no",
+        "prediction": "No significant change was detected between the two images.",
+        "exact_match": false
+      },
+      {
+        "file_name": "10509.png",
+        "question": "Did the areas of trees increase?",
+        "ground_truth": "no",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 1.92% of the scene (1258/65536 pixels). The change is concentrated in the top-left (97%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "00878.png",
+        "question": "Have the areas of low vegetation increased?",
+        "ground_truth": "no",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 3.51% of the scene (2298/65536 pixels). The change is concentrated in the bottom-right (60%) and top-right (40%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "00654.png",
+        "question": "Did the areas of trees increase?",
+        "ground_truth": "no",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 0.55% of the scene (359/65536 pixels). The change is concentrated in the bottom-left (98%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "11239.png",
+        "question": "Have the regions of buildings increased?",
+        "ground_truth": "yes",
+        "prediction": "No significant change was detected between the two images.",
+        "exact_match": false
+      },
+      {
+        "file_name": "07400.png",
+        "question": "Did the areas of water increase?",
+        "ground_truth": "no",
+        "prediction": "No significant change was detected between the two images.",
+        "exact_match": false
+      },
+      {
+        "file_name": "01347.png",
+        "question": "Did the regions of buildings increase?",
+        "ground_truth": "yes",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 0.2% of the scene (133/65536 pixels). The change is concentrated in the bottom-left (99%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "02122.png",
+        "question": "Have the regions of water increased?",
+        "ground_truth": "no",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 0.03% of the scene (18/65536 pixels). The change is concentrated in the top-right (89%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "02341.png",
+        "question": "Have the regions of trees increased?",
+        "ground_truth": "yes",
+        "prediction": "No significant change was detected between the two images.",
+        "exact_match": false
+      }
+    ],
+    "change_to_what": [
+      {
+        "file_name": "03876.png",
+        "question": "What have the areas of trees in the pre-event image mainly changed to?",
+        "ground_truth": "NVG_surface",
+        "prediction": "No significant change was detected between the two images.",
+        "exact_match": false
+      },
+      {
+        "file_name": "05431.png",
+        "question": "What have the regions of non-vegetated ground surface in the pre-change image mainly changed to?",
+        "ground_truth": "low_vegetation",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 1.68% of the scene (1099/65536 pixels). The change is concentrated in the top-right (85%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "09380.png",
+        "question": "What have the areas of non-vegetated ground surface in the first image mainly changed to?",
+        "ground_truth": "buildings",
+        "prediction": "A moderate level of change was detected between the two dates, affecting approximately 6.38% of the scene (4179/65536 pixels). The change is concentrated in the bottom-right (74%) and bottom-left (19%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "08449.png",
+        "question": "What have the areas of non-vegetated ground surface in the first image mainly changed to?",
+        "ground_truth": "buildings",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 0.15% of the scene (101/65536 pixels). The change is concentrated in the top-right (88%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "02606.png",
+        "question": "What have the regions of low vegetation in the pre-event image mainly changed to?",
+        "ground_truth": "trees",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 0.68% of the scene (448/65536 pixels). The change is concentrated in the top-left (64%) and bottom-right (22%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "00515.png",
+        "question": "What have the areas of water in the pre-change image mainly changed to?",
+        "ground_truth": "buildings",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 1.7% of the scene (1117/65536 pixels). The change is concentrated in the top-right (67%) and bottom-right (33%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "10723.png",
+        "question": "What have the areas of non-vegetated ground surface in the first image mainly changed to?",
+        "ground_truth": "buildings",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 0.61% of the scene (398/65536 pixels). The change is concentrated in the bottom-left (81%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "02043.png",
+        "question": "What have the areas of buildings in the first image mainly changed to?",
+        "ground_truth": "NVG_surface",
+        "prediction": "No significant change was detected between the two images.",
+        "exact_match": false
+      },
+      {
+        "file_name": "00825.png",
+        "question": "What have the areas of non-vegetated ground surface in the pre-event image mainly changed to?",
+        "ground_truth": "low_vegetation",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 0.04% of the scene (28/65536 pixels). The change is concentrated in the bottom-right (100%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "10953.png",
+        "question": "What have the areas of non-vegetated ground surface in the pre-change image mainly changed to?",
+        "ground_truth": "low_vegetation",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 2.27% of the scene (1486/65536 pixels). The change is concentrated in the top-left (88%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "06747.png",
+        "question": "What have the areas of non-vegetated ground surface in the first image mainly changed to?",
+        "ground_truth": "buildings",
+        "prediction": "A moderate level of change was detected between the two dates, affecting approximately 10.0% of the scene (6556/65536 pixels). The change is concentrated in the bottom-right (100%).\n\n[ood_guard: Input imagery characteristics differ substantially from this model's training distribution (pixel intensity distribution differs sharply from the training imagery (max channel z-score=3.3, threshold=3.0)); confidence is low and results may be unreliable.]",
+        "exact_match": false
+      },
+      {
+        "file_name": "02692.png",
+        "question": "What have the areas of non-vegetated ground surface in the pre-change image mainly changed to?",
+        "ground_truth": "buildings",
+        "prediction": "No significant change was detected between the two images.",
+        "exact_match": false
+      },
+      {
+        "file_name": "01924.png",
+        "question": "What have the areas of low vegetation in the first image mainly changed to?",
+        "ground_truth": "buildings",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 0.01% of the scene (9/65536 pixels). The change is concentrated in the bottom-right (100%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "00199.png",
+        "question": "What have the regions of non-vegetated ground surface in the pre-event image mainly changed to?",
+        "ground_truth": "playgrounds",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 1.46% of the scene (960/65536 pixels). The change is concentrated in the top-left (65%) and top-right (35%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "06639.png",
+        "question": "What have the regions of non-vegetated ground surface in the pre-change image mainly changed to?",
+        "ground_truth": "low_vegetation",
+        "prediction": "No significant change was detected between the two images.",
+        "exact_match": false
+      },
+      {
+        "file_name": "07214.png",
+        "question": "What have the areas of low vegetation in the first image mainly changed to?",
+        "ground_truth": "NVG_surface",
+        "prediction": "No significant change was detected between the two images.",
+        "exact_match": false
+      },
+      {
+        "file_name": "04024.png",
+        "question": "What have the regions of non-vegetated ground surface in the pre-event image mainly changed to?",
+        "ground_truth": "buildings",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 0.83% of the scene (546/65536 pixels). The change is concentrated in the top-right (94%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "01752.png",
+        "question": "What have the areas of non-vegetated ground surface in the first image mainly changed to?",
+        "ground_truth": "buildings",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 0.32% of the scene (210/65536 pixels). The change is concentrated in the top-right (100%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "02637.png",
+        "question": "What have the areas of buildings in the first image mainly changed to?",
+        "ground_truth": "buildings",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 4.42% of the scene (2895/65536 pixels). The change is concentrated in the bottom-right (45%) and bottom-left (30%) and top-left (25%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "01906.png",
+        "question": "What have the regions of buildings in the pre-change image mainly changed to?",
+        "ground_truth": "NVG_surface",
+        "prediction": "No significant change was detected between the two images.",
+        "exact_match": false
+      }
+    ],
+    "largest_change": [
+      {
+        "file_name": "03664.png",
+        "question": "What is the largest change?",
+        "ground_truth": "buildings",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 1.39% of the scene (913/65536 pixels). The change is concentrated in the top-right (94%).\n\n[ood_guard: Input imagery characteristics differ substantially from this model's training distribution (pixel intensity distribution differs sharply from the training imagery (max channel z-score=3.9, threshold=3.0)); confidence is low and results may be unreliable.]",
+        "exact_match": false
+      },
+      {
+        "file_name": "08023.png",
+        "question": "What is the largest change?",
+        "ground_truth": "NVG_surface",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 4.42% of the scene (2895/65536 pixels). The change is concentrated in the top-left (100%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "03647.png",
+        "question": "What is the largest change in the first image?",
+        "ground_truth": "NVG_surface",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 1.14% of the scene (749/65536 pixels). The change is concentrated in the top-left (63%) and top-right (30%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "10653.png",
+        "question": "What is the largest change in the post-change image?",
+        "ground_truth": "buildings",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 0.02% of the scene (16/65536 pixels). The change is concentrated in the bottom-left (100%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "01244.png",
+        "question": "What is the largest change?",
+        "ground_truth": "low_vegetation",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 4.35% of the scene (2853/65536 pixels). The change is concentrated in the top-right (54%) and top-left (46%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "02180.png",
+        "question": "What is the largest change in the pre-change image?",
+        "ground_truth": "low_vegetation",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 0.04% of the scene (26/65536 pixels). The change is concentrated in the bottom-right (100%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "00728.png",
+        "question": "What is the largest change?",
+        "ground_truth": "NVG_surface",
+        "prediction": "No significant change was detected between the two images.",
+        "exact_match": false
+      },
+      {
+        "file_name": "03317.png",
+        "question": "What type of change is the largest in the first image?",
+        "ground_truth": "low_vegetation",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 1.01% of the scene (664/65536 pixels). The change is concentrated in the bottom-left (85%).\n\n[ood_guard: Input imagery characteristics differ substantially from this model's training distribution (pixel intensity distribution differs sharply from the training imagery (max channel z-score=3.2, threshold=3.0)); confidence is low and results may be unreliable.]",
+        "exact_match": false
+      },
+      {
+        "file_name": "01687.png",
+        "question": "What type of change is the largest in the post-event image?",
+        "ground_truth": "NVG_surface",
+        "prediction": "No significant change was detected between the two images.",
+        "exact_match": false
+      },
+      {
+        "file_name": "01765.png",
+        "question": "What is the largest change in the second image?",
+        "ground_truth": "buildings",
+        "prediction": "No significant change was detected between the two images.\n\n[ood_guard: Input imagery characteristics differ substantially from this model's training distribution (pixel intensity distribution differs sharply from the training imagery (max channel z-score=4.1, threshold=3.0)); confidence is low and results may be unreliable.]",
+        "exact_match": false
+      }
+    ],
+    "change_ratio": [
+      {
+        "file_name": "05245.png",
+        "question": "What is the percentage of changed areas?",
+        "ground_truth": "10_to_20",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 2.86% of the scene (1873/65536 pixels). The change is concentrated in the top-left (97%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "01704.png",
+        "question": "What is the change ratio of the imagery?",
+        "ground_truth": "0_to_10",
+        "prediction": "No significant change was detected between the two images.",
+        "exact_match": false
+      },
+      {
+        "file_name": "02342.png",
+        "question": "How much of the area has changed?",
+        "ground_truth": "10_to_20",
+        "prediction": "No significant change was detected between the two images.",
+        "exact_match": false
+      },
+      {
+        "file_name": "10670.png",
+        "question": "What is the non-change ratio of the imagery?",
+        "ground_truth": "70_to_80",
+        "prediction": "No significant change was detected between the two images.",
+        "exact_match": false
+      },
+      {
+        "file_name": "00446.png",
+        "question": "How much of the area has not changed?",
+        "ground_truth": "80_to_90",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 0.0% of the scene (1/65536 pixels). The change is concentrated in the top-right (100%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "00291.png",
+        "question": "What is the percentage of changed regions?",
+        "ground_truth": "10_to_20",
+        "prediction": "No significant change was detected between the two images.",
+        "exact_match": false
+      },
+      {
+        "file_name": "02631.png",
+        "question": "What is the percentage of unchanged areas?",
+        "ground_truth": "50_to_60",
+        "prediction": "A moderate level of change was detected between the two dates, affecting approximately 12.35% of the scene (8092/65536 pixels). The change is concentrated in the top-left (91%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "09724.png",
+        "question": "What is the change ratio of the imagery?",
+        "ground_truth": "20_to_30",
+        "prediction": "No significant change was detected between the two images.\n\n[ood_guard: Input imagery characteristics differ substantially from this model's training distribution (pixel intensity distribution differs sharply from the training imagery (max channel z-score=3.2, threshold=3.0)); confidence is low and results may be unreliable.]",
+        "exact_match": false
+      },
+      {
+        "file_name": "03664.png",
+        "question": "What is the change ratio of the imagery?",
+        "ground_truth": "30_to_40",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 1.39% of the scene (913/65536 pixels). The change is concentrated in the top-right (94%).\n\n[ood_guard: Input imagery characteristics differ substantially from this model's training distribution (pixel intensity distribution differs sharply from the training imagery (max channel z-score=3.9, threshold=3.0)); confidence is low and results may be unreliable.]",
+        "exact_match": false
+      }
+    ],
+    "decrease_or_not": [
+      {
+        "file_name": "06642.png",
+        "question": "Have the areas of buildings decreased?",
+        "ground_truth": "yes",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 0.89% of the scene (581/65536 pixels). The change is concentrated in the bottom-right (100%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "02626.png",
+        "question": "Have the areas of non-vegetated ground surface decreased?",
+        "ground_truth": "yes",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 0.37% of the scene (243/65536 pixels). The change is concentrated in the top-left (100%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "10329.png",
+        "question": "Have the areas of buildings decreased?",
+        "ground_truth": "no",
+        "prediction": "A moderate level of change was detected between the two dates, affecting approximately 6.5% of the scene (4258/65536 pixels). The change is concentrated in the top-left (70%) and bottom-right (15%).\n\n[ood_guard: Input imagery characteristics differ substantially from this model's training distribution (pixel intensity distribution differs sharply from the training imagery (max channel z-score=3.2, threshold=3.0)); confidence is low and results may be unreliable.]",
+        "exact_match": false
+      },
+      {
+        "file_name": "02242.png",
+        "question": "Did the regions of buildings decrease?",
+        "ground_truth": "no",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 0.53% of the scene (350/65536 pixels). The change is concentrated in the top-right (76%) and bottom-left (23%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "00662.png",
+        "question": "Have the regions of non-vegetated ground surface decreased?",
+        "ground_truth": "no",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 0.01% of the scene (7/65536 pixels). The change is concentrated in the top-right (100%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "10953.png",
+        "question": "Have the areas of playgrounds decreased?",
+        "ground_truth": "no",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 2.27% of the scene (1486/65536 pixels). The change is concentrated in the top-left (88%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "09758.png",
+        "question": "Did the areas of trees decrease?",
+        "ground_truth": "no",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 0.01% of the scene (9/65536 pixels). The change is concentrated in the bottom-right (100%).\n\n[ood_guard: Input imagery characteristics differ substantially from this model's training distribution (pixel intensity distribution differs sharply from the training imagery (max channel z-score=3.1, threshold=3.0)); confidence is low and results may be unreliable.]",
+        "exact_match": false
+      },
+      {
+        "file_name": "00060.png",
+        "question": "Have the regions of trees decreased?",
+        "ground_truth": "no",
+        "prediction": "No significant change was detected between the two images.",
+        "exact_match": false
+      },
+      {
+        "file_name": "07881.png",
+        "question": "Have the areas of trees decreased?",
+        "ground_truth": "no",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 1.56% of the scene (1023/65536 pixels). The change is concentrated in the bottom-left (86%).\n\n[ood_guard: Input imagery characteristics differ substantially from this model's training distribution (pixel intensity distribution differs sharply from the training imagery (max channel z-score=3.3, threshold=3.0)); confidence is low and results may be unreliable.]",
+        "exact_match": false
+      },
+      {
+        "file_name": "02436.png",
+        "question": "Did the regions of buildings decrease?",
+        "ground_truth": "no",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 0.03% of the scene (22/65536 pixels). The change is concentrated in the bottom-left (100%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "03442.png",
+        "question": "Did the areas of buildings decrease?",
+        "ground_truth": "yes",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 1.86% of the scene (1217/65536 pixels). The change is concentrated in the bottom-left (90%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "02809.png",
+        "question": "Did the areas of water decrease?",
+        "ground_truth": "no",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 0.81% of the scene (528/65536 pixels). The change is concentrated in the top-left (90%).\n\n[ood_guard: Input imagery characteristics differ substantially from this model's training distribution (pixel intensity distribution differs sharply from the training imagery (max channel z-score=3.3, threshold=3.0)); confidence is low and results may be unreliable.]",
+        "exact_match": false
+      },
+      {
+        "file_name": "00829.png",
+        "question": "Have the regions of trees decreased?",
+        "ground_truth": "yes",
+        "prediction": "No significant change was detected between the two images.",
+        "exact_match": false
+      },
+      {
+        "file_name": "05620.png",
+        "question": "Did the regions of trees decrease?",
+        "ground_truth": "no",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 0.1% of the scene (64/65536 pixels). The change is concentrated in the top-left (100%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "04342.png",
+        "question": "Have the regions of low vegetation decreased?",
+        "ground_truth": "yes",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 0.01% of the scene (4/65536 pixels). The change is concentrated in the bottom-left (50%) and bottom-right (50%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "09394.png",
+        "question": "Have the areas of water decreased?",
+        "ground_truth": "no",
+        "prediction": "A high level of change was detected between the two dates, affecting approximately 17.56% of the scene (11506/65536 pixels). The change is concentrated in the bottom-right (40%) and top-right (38%) and top-left (16%).\n\n[ood_guard: Input imagery characteristics differ substantially from this model's training distribution (pixel intensity distribution differs sharply from the training imagery (max channel z-score=4.5, threshold=3.0)); confidence is low and results may be unreliable.]",
+        "exact_match": false
+      },
+      {
+        "file_name": "02075.png",
+        "question": "Did the areas of trees decrease?",
+        "ground_truth": "no",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 2.61% of the scene (1709/65536 pixels). The change is concentrated in the bottom-right (91%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "00753.png",
+        "question": "Did the areas of playgrounds decrease?",
+        "ground_truth": "no",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 0.03% of the scene (18/65536 pixels). The change is concentrated in the bottom-right (100%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "01133.png",
+        "question": "Did the regions of playgrounds decrease?",
+        "ground_truth": "no",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 0.06% of the scene (41/65536 pixels). The change is concentrated in the top-left (88%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "03242.png",
+        "question": "Did the areas of water decrease?",
+        "ground_truth": "no",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 0.04% of the scene (29/65536 pixels). The change is concentrated in the top-right (100%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "05854.png",
+        "question": "Did the areas of low vegetation decrease?",
+        "ground_truth": "yes",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 3.79% of the scene (2481/65536 pixels). The change is concentrated in the bottom-left (50%) and bottom-right (26%) and top-right (25%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "01702.png",
+        "question": "Did the regions of low vegetation decrease?",
+        "ground_truth": "no",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 0.57% of the scene (371/65536 pixels). The change is concentrated in the bottom-left (58%) and top-right (42%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "02683.png",
+        "question": "Have the areas of water decreased?",
+        "ground_truth": "no",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 0.5% of the scene (330/65536 pixels). The change is concentrated in the top-right (85%) and bottom-right (15%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "00666.png",
+        "question": "Have the regions of buildings decreased?",
+        "ground_truth": "yes",
+        "prediction": "No significant change was detected between the two images.",
+        "exact_match": false
+      },
+      {
+        "file_name": "06196.png",
+        "question": "Did the areas of buildings decrease?",
+        "ground_truth": "no",
+        "prediction": "No significant change was detected between the two images.",
+        "exact_match": false
+      }
+    ],
+    "smallest_change": [
+      {
+        "file_name": "05326.png",
+        "question": "What is the smallest change in the pre-event image?",
+        "ground_truth": "low_vegetation",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 1.05% of the scene (690/65536 pixels). The change is concentrated in the top-right (100%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "01752.png",
+        "question": "What is the smallest change in the pre-event image?",
+        "ground_truth": "buildings",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 0.32% of the scene (210/65536 pixels). The change is concentrated in the top-right (100%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "00927.png",
+        "question": "What is the smallest change in the second image?",
+        "ground_truth": "water",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 0.13% of the scene (82/65536 pixels). The change is concentrated in the top-left (51%) and bottom-right (49%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "05190.png",
+        "question": "What type of change is the smallest in the pre-change image?",
+        "ground_truth": "NVG_surface",
+        "prediction": "No significant change was detected between the two images.",
+        "exact_match": false
+      },
+      {
+        "file_name": "03485.png",
+        "question": "What type of change is the smallest in the post-change image?",
+        "ground_truth": "water",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 0.0% of the scene (3/65536 pixels). The change is concentrated in the bottom-left (100%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "09380.png",
+        "question": "What is the smallest change in the second image?",
+        "ground_truth": "low_vegetation",
+        "prediction": "A moderate level of change was detected between the two dates, affecting approximately 6.38% of the scene (4179/65536 pixels). The change is concentrated in the bottom-right (74%) and bottom-left (19%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "02708.png",
+        "question": "What is the smallest change in the pre-change image?",
+        "ground_truth": "NVG_surface",
+        "prediction": "A low level of change was detected between the two dates, affecting approximately 0.91% of the scene (595/65536 pixels). The change is concentrated in the bottom-right (100%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "09521.png",
+        "question": "What is the smallest change in the pre-change image?",
+        "ground_truth": "NVG_surface",
+        "prediction": "A moderate level of change was detected between the two dates, affecting approximately 7.25% of the scene (4751/65536 pixels). The change is concentrated in the bottom-right (97%).",
+        "exact_match": false
+      },
+      {
+        "file_name": "07502.png",
+        "question": "What is the smallest change in the pre-change image?",
+        "ground_truth": "NVG_surface",
+        "prediction": "No significant change was detected between the two images.",
+        "exact_match": false
+      },
+      {
+        "file_name": "01114.png",
+        "question": "What type of change is the smallest?",
+        "ground_truth": "trees",
+        "prediction": "No significant change was detected between the two images.",
+        "exact_match": false
+      }
+    ]
+  }
+}

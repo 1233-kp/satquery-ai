@@ -1,0 +1,37 @@
+{
+  "dataset": "xiang709/VRSBench",
+  "subset": "captioning",
+  "summary": {
+    "n": 3,
+    "bleu4_corpus": 2.2082,
+    "cider_corpus": 0.0,
+    "task_hint_used": true,
+    "task_selected_mismatch": 0
+  },
+  "items": [
+    {
+      "image_id": "10988_0000.png",
+      "question": "Describe the image in detail",
+      "ground_truth": "The image from GoogleEarth showcases a group of four storage tanks. These storage tanks are placed within a green setting with surrounding trees on what appears to be a storage facility. From the top-right going clockwise, the top-most tank appears to be the largest among the group and has a white cover. The rest of the storage tanks, evenly spaced from each other, also have white covers and are of smaller sizes compared to the top-most tank.",
+      "prediction": "This aerial view depicts a complex landscape, featuring four distinct, semi-circular structures. The structures are distributed across a broad, expansive area, which is characterized by a mix of natural and man-made elements. The landscape is dominated by a broad expanse of cultivated land, which appears to be a mix between agricultural and forested areas. The cultivated land is bordered by a series of smaller, semi circular structures, which are likely to be either buildings or storage facilities. The semi circular features are distributed throughout the landscape, with no clear pattern or boundary. The surrounding landscape is characterized primarily by a mixture of forest and cultivated areas, with a few patches of bare earth. The forest is dense and covers a significant portion of the landscape. The cultivation is sparse and distributed across the landscape with no apparent pattern. The overall landscape is expansive and diverse, with significant areas of agricultural land and forest. The image is captured from a high vantage point, providing a broad view of the complex landscape.",
+      "task_selected": "captioning",
+      "cider": 0.0
+    },
+    {
+      "image_id": "09185_0000.png",
+      "question": "Describe the image in detail",
+      "ground_truth": "The image sourced from GoogleEarth shows a landscape marked by an airport to the right of the frame which takes up a portion of the field of view. The airport has one main runway and parallel taxiways, along with open areas and some buildings around it. Surrounding the airport, the rest of the image reveals a densely packed suburban area with houses, trees, and winding roads interspersed with patches of greenery and bodies of water.",
+      "prediction": "The dominant feature is the \"Schoenbrunn\" reservoir, which spans across the landscape. The reservoir is bordered by the \"Klagenfurt\" and \"Kirche\" municipalities, and is adjacent to the \"Schwebein\" and the \"Bahnhof\" municipalities. The \"Schaenbrun\" reservoir is also adjacent to \"Kr\u00e4fels\" and is located within the \"Hintergrund\" (background). The \"Klasse\" and other smaller areas are also present, but they are less prominent. The landscape is dominated by the large \"Schoenbrunn,\" which is a natural feature, and the smaller areas, which are also natural features. The image is a composite of multiple satellite scenes, each representing a different area. The overall landscape is characterized by the presence of the \"schoenbronn\" and its adjacent areas, as well as the \"klasse,\" \"bahnhof,\" and \"kirche.\" The landscape features are distributed across the \"schoenbron\" and adjacent areas. The areas are not present in the \"bahr,\" \"klasse,\" and other small areas.",
+      "task_selected": "captioning",
+      "cider": 0.0
+    },
+    {
+      "image_id": "P1473_0003.png",
+      "question": "Describe the image in detail",
+      "ground_truth": "This high-resolution aerial image from Google Earth features a parking lot with multiple large vehicles. Several of the vehicles parked in alignment with each other near a large building with a dark roof and multiple light-colored rectangular features on top. The parking configuration suggests a systematic arrangement with one large vehicle located farthest from the building at the bottom of the image.",
+      "prediction": "This aerial view is captured in a landscape, featuring a complex of buildings and a parking area. The dominant feature is the expansive parking area, which occupies a significant portion of the image. The parking area is bordered by a circular feature, which may be a small garden or a parking space, and adjacent to the buildings. The buildings are distributed across the landscape, with one building situated in the center of the parking area and three buildings adjacent to it. The architecture of the buildings is modern, with a mix of flat and pitched roofs, and the windows are evenly distributed across their surfaces. The landscape is characterized by a mix, with patches of grass and a paved area, and no significant urban infrastructure. The overall atmosphere is calm and serene, with no signs of human activity or disturbance.",
+      "task_selected": "captioning",
+      "cider": 0.0
+    }
+  ]
+}

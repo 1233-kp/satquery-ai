@@ -1,0 +1,102 @@
+services:
+  - type: web
+    name: satquery-ai-backend
+    runtime: python
+    # Real models measured at ~2.6GB RAM idle (all four loaded), ~3.5GB after
+    # light use across all task types, stable (not growing further) under
+    # repeated same-task requests -- see README.md's Deploying to Render
+    # section. Standard (2GB) is not enough; "pro" (4GB) is the technical
+    # minimum, "pro plus" (8GB) is the comfortable-headroom recommendation,
+    # especially once more than one user can hit it concurrently.
+    plan: pro plus
+    rootDir: backend
+    # requirements.txt alone does NOT include torch/transformers/rasterio --
+    # see its own header comment. Installing torch/torchvision from the CPU
+    # wheel index first avoids pulling PyPI's default CUDA-bundled build,
+    # which is several GB larger than needed on a GPU-less target and would
+    # eat into build time/disk for no benefit.
+    buildCommand: >-
+      pip install torch==2.5.1 torchvision==0.20.1 --index-url https://download.pytorch.org/whl/cpu
+      && pip install -r requirements-ml.txt
+    # --forwarded-allow-ips='*' matters specifically for OAuth: Render
+    # terminates TLS at its edge proxy and forwards plain HTTP internally.
+    # uvicorn's proxy-header trust defaults to only 127.0.0.1 (verified: not
+    # Render's actual proxy source), so without this,
+    # request.url_for("google_callback") builds an "http://" redirect_uri
+    # instead of "https://" -- which then mismatches whatever https:// URL
+    # is registered in the Google/GitHub OAuth console and OAuth login fails
+    # outright in production despite working fine locally.
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT --forwarded-allow-ips='*' --proxy-headers
+    envVars:
+      - key: VQA_MODE
+        value: real
+      - key: CHANGE_MODE
+        value: real
+      - key: FUSION_MODE
+        value: real
+      - key: GROUNDING_MODE
+        value: real
+      - key: VQA_DEVICE
+        value: cpu
+      - key: GROUNDING_DEVICE
+        value: cpu
+      # Measured directly (not just matched to vCPU count as a guess): tested
+      # 2/4/8/12 threads for captioning's decode loop on this model, 4 was the
+      # fastest of the four (~14% faster than the default thread count) --
+      # more threads doesn't help and can slightly hurt the small per-token
+      # matmuls of autoregressive decoding. Also happens to match Pro Plus's
+      # 4 vCPU allocation.
+      - key: TORCH_NUM_THREADS
+        value: "4"
+      - key: DATABASE_URL
+        value: sqlite:///./satquery.db
+      - key: UPLOAD_DIR
+        value: ./data/uploads
+      - key: RESULTS_DIR
+        value: ./data/results
+      # Scoped to the actual deployed frontend, not "*" -- that was fine
+      # placeholder-for-local-dev convenience before real accounts existed,
+      # not appropriate now that this serves real auth/session traffic.
+      # NOTE: Render's `fromService`/property:host does NOT reliably produce
+      # a full "https://" URL (confirmed unreliable/scheme-less in practice,
+      # not just a theoretical concern) so these are set explicitly instead.
+      # This is the standard Render URL for this exact service name -- verify
+      # it matches after the first deploy (Render appends a random suffix
+      # instead if "satquery-ai-frontend" was already taken) and update both
+      # of these plus VITE_API_URL below if it doesn't.
+      - key: CORS_ORIGINS
+        value: https://satquery-ai-frontend.onrender.com
+      - key: FRONTEND_URL
+        value: https://satquery-ai-frontend.onrender.com
+      # Secrets: never committed here. `sync: false` marks these as
+      # "set manually in the Render dashboard" -- Render will prompt for a
+      # value on first deploy and leave it untouched on redeploys. See the
+      # deploy checklist in README.md for exactly what to paste in
+      # and where each value comes from (Google Cloud Console / GitHub OAuth
+      # App settings / a freshly generated secret).
+      - key: JWT_SECRET_KEY
+        sync: false
+      - key: GOOGLE_CLIENT_ID
+        sync: false
+      - key: GOOGLE_CLIENT_SECRET
+        sync: false
+      - key: GITHUB_CLIENT_ID
+        sync: false
+      - key: GITHUB_CLIENT_SECRET
+        sync: false
+
+  - type: web
+    name: satquery-ai-frontend
+    runtime: static
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    envVars:
+      # Same caveat as CORS_ORIGINS/FRONTEND_URL above -- verify this matches
+      # the actual assigned backend URL after first deploy.
+      - key: VITE_API_URL
+        value: https://satquery-ai-backend.onrender.com
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html

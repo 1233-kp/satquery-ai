@@ -1,0 +1,24 @@
+# Heavy ML dependencies -- only needed for VQA_MODE=real / CHANGE_MODE=real /
+# FUSION_MODE=real and for training scripts. Install these locally (or on a
+# GPU box / Colab) for Day 2-4 model work; do NOT install these on Render's
+# free/starter tier, they are large and will blow the build time/RAM budget.
+-r requirements.txt
+# On aarch64 (e.g. an ARM cloud VM) + Python 3.12, 1.3.10 has no prebuilt wheel
+# and fails to build from source (its build backend pins numpy==2.0.0rc1,
+# which has since been yanked from PyPI). Verified 1.4.4 is the first version
+# with a real manylinux_2_28_aarch64/cp312 wheel (self-contained GDAL, so no
+# system libgdal-dev version dependency) -- use rasterio==1.4.4 instead on ARM.
+# The API surface this project uses (open/read/count/dtypes/crs/res) is
+# unchanged between 1.3.x and 1.4.x. x86_64 targets (local dev, Render) are
+# unaffected and keep the pin below.
+rasterio==1.3.10
+torch==2.5.1
+torchvision==0.20.1
+transformers==4.46.3
+peft==0.13.2
+accelerate==1.0.1
+pyarrow==17.0.0
+zstandard==0.23.0
+requests==2.32.3
+huggingface_hub==0.26.2
+safetensors==0.4.5

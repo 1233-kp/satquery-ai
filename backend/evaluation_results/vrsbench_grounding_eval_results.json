@@ -1,0 +1,213 @@
+{
+  "dataset": "xiang709/VRSBench",
+  "subset": "grounding",
+  "summary": {
+    "n": 25,
+    "precision_at_iou_0.5": 0.2,
+    "mean_iou": 0.1617,
+    "grounding_guard_fired_count": 7,
+    "grounding_guard_fired_rate": 0.28
+  },
+  "items": [
+    {
+      "image_id": "P5070_0064.png",
+      "referring_expression": "The small vehicle located in the bottom-right part of the image.",
+      "ground_truth_box_norm": "{<70><78><87><88>}",
+      "n_detections": 2,
+      "guard_fired": false,
+      "iou": 0.0
+    },
+    {
+      "image_id": "P0019_0091.png",
+      "referring_expression": "The small docked ship is positioned towards the middle-right part of the image, surrounded by water.",
+      "ground_truth_box_norm": "{<77><44><85><49>}",
+      "n_detections": 2,
+      "guard_fired": true,
+      "iou": 0.0702
+    },
+    {
+      "image_id": "P2714_0013.png",
+      "referring_expression": "The soccer ball field positioned towards the top-center of the image.",
+      "ground_truth_box_norm": "{<30><26><34><31>}",
+      "n_detections": 0,
+      "guard_fired": true,
+      "iou": 0.0
+    },
+    {
+      "image_id": "P1432_0021.png",
+      "referring_expression": "The other basketball court is located closer to the bottom edge of the image.",
+      "ground_truth_box_norm": "{<64><24><85><37>}",
+      "n_detections": 0,
+      "guard_fired": false,
+      "iou": 0.0
+    },
+    {
+      "image_id": "P2330_0037.png",
+      "referring_expression": "The ship is located towards the top center of the image.",
+      "ground_truth_box_norm": "{<39><3><49><44>}",
+      "n_detections": 1,
+      "guard_fired": false,
+      "iou": 0.8032
+    },
+    {
+      "image_id": "P2285_0017.png",
+      "referring_expression": "The small ship located at the bottom-left corner is the left-most among the ships.",
+      "ground_truth_box_norm": "{<23><81><32><91>}",
+      "n_detections": 1,
+      "guard_fired": false,
+      "iou": 0.0
+    },
+    {
+      "image_id": "P0550_0000.png",
+      "referring_expression": "One ship is moored near the harbor in the middle-right.",
+      "ground_truth_box_norm": "{<61><30><66><39>}",
+      "n_detections": 1,
+      "guard_fired": false,
+      "iou": 0.1518
+    },
+    {
+      "image_id": "11406_0000.png",
+      "referring_expression": "The small bridge has a curved structure and extends from the centre to the edge of the image.",
+      "ground_truth_box_norm": "{<48><41><100><100>}",
+      "n_detections": 0,
+      "guard_fired": true,
+      "iou": 0.0
+    },
+    {
+      "image_id": "P1315_0044.png",
+      "referring_expression": "The small bridge located in the bottom left of the image.",
+      "ground_truth_box_norm": "{<1><56><7><69>}",
+      "n_detections": 1,
+      "guard_fired": false,
+      "iou": 0.0
+    },
+    {
+      "image_id": "06288_0000.png",
+      "referring_expression": "The unique vehicle is positioned on the tarmac towards the top-middle section of the image.",
+      "ground_truth_box_norm": "{<36><12><45><25>}",
+      "n_detections": 2,
+      "guard_fired": true,
+      "iou": 0.7404
+    },
+    {
+      "image_id": "P5789_1538.png",
+      "referring_expression": "The ground track field is in a central position with a running track and an inner green field.",
+      "ground_truth_box_norm": "{<50><21><76><62>}",
+      "n_detections": 0,
+      "guard_fired": true,
+      "iou": 0.0
+    },
+    {
+      "image_id": "06878_0000.png",
+      "referring_expression": "A vehicle is present towards the bottom-right quadrant of the image.",
+      "ground_truth_box_norm": "{<70><69><76><73>}",
+      "n_detections": 0,
+      "guard_fired": false,
+      "iou": 0.0
+    },
+    {
+      "image_id": "10076_0000.png",
+      "referring_expression": "The bridge running horizontally across the bottom section of the image, nearly spanning the width of the image.",
+      "ground_truth_box_norm": "{<32><87><100><97>}",
+      "n_detections": 2,
+      "guard_fired": false,
+      "iou": 0.566
+    },
+    {
+      "image_id": "08222_0000.png",
+      "referring_expression": "The baseball field with its distinctive diamond-shaped at the center of the image.",
+      "ground_truth_box_norm": "{<40><39><69><68>}",
+      "n_detections": 1,
+      "guard_fired": true,
+      "iou": 0.8267
+    },
+    {
+      "image_id": "P1225_0050.png",
+      "referring_expression": "The ship located at the top-left part of the image.",
+      "ground_truth_box_norm": "{<28><27><40><38>}",
+      "n_detections": 0,
+      "guard_fired": false,
+      "iou": 0.0
+    },
+    {
+      "image_id": "P0579_0012.png",
+      "referring_expression": "The harbor at the bottom-most part of the image is positioned on the left side.",
+      "ground_truth_box_norm": "{<2><47><28><100>}",
+      "n_detections": 1,
+      "guard_fired": false,
+      "iou": 0.0
+    },
+    {
+      "image_id": "P1023_0021.png",
+      "referring_expression": "The small vehicle is visible in the top-left area of the image.",
+      "ground_truth_box_norm": "{<25><14><27><18>}",
+      "n_detections": 0,
+      "guard_fired": false,
+      "iou": 0.0
+    },
+    {
+      "image_id": "09666_0000.png",
+      "referring_expression": "The partially visible airplane situated at the bottom section of the tarmac.",
+      "ground_truth_box_norm": "{<40><80><71><100>}",
+      "n_detections": 1,
+      "guard_fired": false,
+      "iou": 0.1711
+    },
+    {
+      "image_id": "10613_0000.png",
+      "referring_expression": "The expressway service area occupies a large portion of the image.",
+      "ground_truth_box_norm": "{<4><32><88><100>}",
+      "n_detections": 0,
+      "guard_fired": false,
+      "iou": 0.0
+    },
+    {
+      "image_id": "08354_0000.png",
+      "referring_expression": "The left-most tennis court at the bottom-middle section of the image.",
+      "ground_truth_box_norm": "{<42><67><51><82>}",
+      "n_detections": 2,
+      "guard_fired": false,
+      "iou": 0.0272
+    },
+    {
+      "image_id": "P8656_0126.png",
+      "referring_expression": "The vehicle positioned at the bottom-central part of the image, near the trees, is easily distinguishable.",
+      "ground_truth_box_norm": "{<54><68><66><81>}",
+      "n_detections": 2,
+      "guard_fired": false,
+      "iou": 0.0936
+    },
+    {
+      "image_id": "P5789_2396.png",
+      "referring_expression": "The bridge positioned near the center of the image intersects with other roads is upper placement relative to other bridges.",
+      "ground_truth_box_norm": "{<38><49><50><58>}",
+      "n_detections": 1,
+      "guard_fired": false,
+      "iou": 0.0168
+    },
+    {
+      "image_id": "06893_0000.png",
+      "referring_expression": "The object with long blades and a slender tower visible on the textured terrain is a windmill.",
+      "ground_truth_box_norm": "{<69><59><79><90>}",
+      "n_detections": 8,
+      "guard_fired": true,
+      "iou": 0.5743
+    },
+    {
+      "image_id": "P5789_1246.png",
+      "referring_expression": "The ship located at the top-left of the image.",
+      "ground_truth_box_norm": "{<4><9><21><23>}",
+      "n_detections": 0,
+      "guard_fired": false,
+      "iou": 0.0
+    },
+    {
+      "image_id": "P1099_0005.png",
+      "referring_expression": "The left-most tennis court appears on the far left side of the image.",
+      "ground_truth_box_norm": "{<0><40><14><76>}",
+      "n_detections": 1,
+      "guard_fired": false,
+      "iou": 0.0
+    }
+  ]
+}

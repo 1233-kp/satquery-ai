@@ -1,0 +1,47 @@
+# Real secrets: JWT signing key, Google/GitHub OAuth client id/secret.
+# .env.example is the template and IS committed.
+.env
+
+# Python virtualenv / bytecode cache
+venv/
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Local dev database -- also 115MB, over GitHub's 100MB hard push limit.
+# Regenerated automatically by Base.metadata.create_all on first run.
+satquery.db
+
+# Training datasets (BigEarthNet/CDVQA/LEVIR-CD/OSCD/RSVQA-LR/VRSBench) and
+# uploaded user imagery -- ~8GB total, none of it is source, none of it
+# belongs in git history. Datasets are pulled from their public sources by
+# the scripts/ pipeline; uploads/results are runtime-generated.
+data/
+
+# Trained model weights (LoRA adapter, Siamese U-Net, fusion net) -- 757MB
+# total across ~40 epoch checkpoints. No single file exceeds GitHub's 100MB
+# block, but this isn't needed for this push's actual purpose: the Render
+# frontend build doesn't touch the backend at all, and the Oracle Cloud VM
+# already has its own copy of these weights transferred directly (scp), not
+# via this repo. Re-evaluate with Git LFS if that ever changes.
+#
+# Excludes file CONTENTS only (checkpoints/* + re-exclude each subdir's own
+# contents), not the checkpoints/ directory itself or its three model
+# subdirectories -- a blanket "checkpoints/" rule would also hide the
+# .gitkeep placeholders below, since git can't re-include a file whose
+# parent directory is itself excluded. This way the expected folder
+# structure stays visible to anyone cloning the repo, without the weights.
+checkpoints/*
+!checkpoints/vqa_lora/
+!checkpoints/change_unet/
+!checkpoints/fusion_net/
+checkpoints/vqa_lora/*
+!checkpoints/vqa_lora/.gitkeep
+checkpoints/change_unet/*
+!checkpoints/change_unet/.gitkeep
+checkpoints/fusion_net/*
+!checkpoints/fusion_net/.gitkeep
+
+# Transient dev-server log
+uvicorn_dev.log

@@ -1,0 +1,462 @@
+{
+  "dataset": "xiang709/VRSBench",
+  "subset": "vqa",
+  "summary": {
+    "by_type": {
+      "object category": {
+        "n": 6,
+        "exact_match_accuracy": 0.0
+      },
+      "object existence": {
+        "n": 9,
+        "exact_match_accuracy": 0.5556
+      },
+      "object position": {
+        "n": 8,
+        "exact_match_accuracy": 0.125
+      },
+      "reasoning": {
+        "n": 2,
+        "exact_match_accuracy": 0.0
+      },
+      "scene type": {
+        "n": 6,
+        "exact_match_accuracy": 0.1667
+      },
+      "object direction": {
+        "n": 2,
+        "exact_match_accuracy": 0.0
+      },
+      "object quantity": {
+        "n": 12,
+        "exact_match_accuracy": 0.5
+      },
+      "object color": {
+        "n": 5,
+        "exact_match_accuracy": 0.2
+      }
+    },
+    "overall": {
+      "n": 50,
+      "exact_match_accuracy": 0.28
+    }
+  },
+  "by_type": {
+    "object category": [
+      {
+        "image_id": "P5789_2138.png",
+        "question": "What is the main man-made structure visible in the image?",
+        "ground_truth": "harbors",
+        "prediction": "airport",
+        "exact_match": false,
+        "task_selected": "vqa"
+      },
+      {
+        "image_id": "P0929_0007.png",
+        "question": "What is the object category of the features found along the waterfront?",
+        "ground_truth": "harbor",
+        "prediction": "land use",
+        "exact_match": false,
+        "task_selected": "vqa"
+      },
+      {
+        "image_id": "P1384_0030.png",
+        "question": "Which object is located at the bottom-right corner?",
+        "ground_truth": "swimming-pool",
+        "prediction": "road",
+        "exact_match": false,
+        "task_selected": "vqa"
+      },
+      {
+        "image_id": "P0801_0000.png",
+        "question": "What is the object in the top-right corner?",
+        "ground_truth": "small-vehicle",
+        "prediction": "light",
+        "exact_match": false,
+        "task_selected": "vqa"
+      },
+      {
+        "image_id": "07714_0000.png",
+        "question": "What is the primary terrain visible in the image?",
+        "ground_truth": "Dry grass field",
+        "prediction": "land surface",
+        "exact_match": false,
+        "task_selected": "vqa"
+      },
+      {
+        "image_id": "06700_0000.png",
+        "question": "What is the main industiral structure visible in the image?",
+        "ground_truth": "chimney",
+        "prediction": "water tower",
+        "exact_match": false,
+        "task_selected": "vqa"
+      }
+    ],
+    "object existence": [
+      {
+        "image_id": "06158_0000.png",
+        "question": "Are there roads visible in the image?",
+        "ground_truth": "yes",
+        "prediction": "yes",
+        "exact_match": true,
+        "task_selected": "vqa"
+      },
+      {
+        "image_id": "10924_0000.png",
+        "question": "Are there any storage units visible near the baseball field?",
+        "ground_truth": "yes",
+        "prediction": "yes",
+        "exact_match": true,
+        "task_selected": "vqa"
+      },
+      {
+        "image_id": "11544_0000.png",
+        "question": "Are there any trees present in the image?",
+        "ground_truth": "Yes",
+        "prediction": "yes",
+        "exact_match": true,
+        "task_selected": "vqa"
+      },
+      {
+        "image_id": "09649_0000.png",
+        "question": "Is there a ship located near the top-middle of the image?",
+        "ground_truth": "Yes",
+        "prediction": "no",
+        "exact_match": false,
+        "task_selected": "vqa"
+      },
+      {
+        "image_id": "09933_0000.png",
+        "question": "What is written on the field?",
+        "ground_truth": "DESERT HILLS",
+        "prediction": "desert mills",
+        "exact_match": false,
+        "task_selected": "vqa"
+      },
+      {
+        "image_id": "07328_0000.png",
+        "question": "Is there any greenery visible?",
+        "ground_truth": "yes",
+        "prediction": "yes",
+        "exact_match": true,
+        "task_selected": "vqa"
+      },
+      {
+        "image_id": "P2758_0085.png",
+        "question": "Is there any small vehicle in the center of the image?",
+        "ground_truth": "Yes",
+        "prediction": "no",
+        "exact_match": false,
+        "task_selected": "vqa"
+      },
+      {
+        "image_id": "10707_0000.png",
+        "question": "Is there a ground track field located at the central top of the image?",
+        "ground_truth": "Yes",
+        "prediction": "no",
+        "exact_match": false,
+        "task_selected": "vqa"
+      },
+      {
+        "image_id": "P5789_2384.png",
+        "question": "Can the entire harbor be seen clearly in the image?",
+        "ground_truth": "No",
+        "prediction": "no",
+        "exact_match": true,
+        "task_selected": "vqa"
+      }
+    ],
+    "object position": [
+      {
+        "image_id": "11545_0000.png",
+        "question": "Is the airplane located on a tarmac?",
+        "ground_truth": "Yes",
+        "prediction": "no",
+        "exact_match": false,
+        "task_selected": "vqa"
+      },
+      {
+        "image_id": "06328_0000.png",
+        "question": "What is the position of the other windmill in relation to the image frame?",
+        "ground_truth": "Bottom-right",
+        "prediction": "south",
+        "exact_match": false,
+        "task_selected": "vqa"
+      },
+      {
+        "image_id": "P1471_0076.png",
+        "question": "Is the top-right vehicle at the edge of the image?",
+        "ground_truth": "Yes",
+        "prediction": "no",
+        "exact_match": false,
+        "task_selected": "vqa"
+      },
+      {
+        "image_id": "11415_0000.png",
+        "question": "Is the dam situated on the northern or southern side of the reservoir?",
+        "ground_truth": "southern",
+        "prediction": "no",
+        "exact_match": false,
+        "task_selected": "vqa"
+      },
+      {
+        "image_id": "P1471_0009.png",
+        "question": "Does the smaller vehicle appear near the top-left or bottom-right of the image?",
+        "ground_truth": "top-left",
+        "prediction": "top- left",
+        "exact_match": false,
+        "task_selected": "vqa"
+      },
+      {
+        "image_id": "P0904_0005.png",
+        "question": "What is the relative position of the tennis court in the image?",
+        "ground_truth": "Top",
+        "prediction": "left",
+        "exact_match": false,
+        "task_selected": "vqa"
+      },
+      {
+        "image_id": "08318_0000.png",
+        "question": "What is the position of the train station within the image?",
+        "ground_truth": "right",
+        "prediction": "north",
+        "exact_match": false,
+        "task_selected": "vqa"
+      },
+      {
+        "image_id": "P2733_0033.png",
+        "question": "Are the container cranes positioned more towards the top or bottom of the image?",
+        "ground_truth": "top",
+        "prediction": "top",
+        "exact_match": true,
+        "task_selected": "vqa"
+      }
+    ],
+    "reasoning": [
+      {
+        "image_id": "P1877_0005.png",
+        "question": "Are the vehicles parked in an orderly manner?",
+        "ground_truth": "Yes",
+        "prediction": "no",
+        "exact_match": false,
+        "task_selected": "vqa"
+      },
+      {
+        "image_id": "P1384_0071.png",
+        "question": "What pattern do the streets follow in the residential area?",
+        "ground_truth": "Winding",
+        "prediction": "no",
+        "exact_match": false,
+        "task_selected": "vqa"
+      }
+    ],
+    "scene type": [
+      {
+        "image_id": "11113_0000.png",
+        "question": "What is the main structure present in the image?",
+        "ground_truth": "Basketball courts",
+        "prediction": "road",
+        "exact_match": false,
+        "task_selected": "vqa"
+      },
+      {
+        "image_id": "P2802_0092.png",
+        "question": "What type of surface is the plane situated on?",
+        "ground_truth": "tarmac",
+        "prediction": "paved surface",
+        "exact_match": false,
+        "task_selected": "vqa"
+      },
+      {
+        "image_id": "08526_0000.png",
+        "question": "What is the type of main structure visible in the image?",
+        "ground_truth": "Expressway-service-area",
+        "prediction": "house",
+        "exact_match": false,
+        "task_selected": "vqa"
+      },
+      {
+        "image_id": "09457_0000.png",
+        "question": "Are the windmills located in an urban area?",
+        "ground_truth": "No",
+        "prediction": "no",
+        "exact_match": true,
+        "task_selected": "vqa"
+      },
+      {
+        "image_id": "P1356_0021.png",
+        "question": "What type of area is shown in the image?",
+        "ground_truth": "coastal agricultural",
+        "prediction": "agricultural",
+        "exact_match": false,
+        "task_selected": "vqa"
+      },
+      {
+        "image_id": "P1377_0062.png",
+        "question": "What type of road runs vertically through the image?",
+        "ground_truth": "straight",
+        "prediction": "asphalt road",
+        "exact_match": false,
+        "task_selected": "vqa"
+      }
+    ],
+    "object direction": [
+      {
+        "image_id": "06135_0000.png",
+        "question": "What is the orientation of the airplane?",
+        "ground_truth": "Diagonal",
+        "prediction": "right",
+        "exact_match": false,
+        "task_selected": "vqa"
+      },
+      {
+        "image_id": "07717_0000.png",
+        "question": "Do all the tennis courts have the same orientation?",
+        "ground_truth": "Yes",
+        "prediction": "no",
+        "exact_match": false,
+        "task_selected": "vqa"
+      }
+    ],
+    "object quantity": [
+      {
+        "image_id": "P2802_0029.png",
+        "question": "How many planes are partially outside the image frame?",
+        "ground_truth": "1",
+        "prediction": "2",
+        "exact_match": false,
+        "task_selected": "vqa"
+      },
+      {
+        "image_id": "11257_0000.png",
+        "question": "How many tennis courts are there?",
+        "ground_truth": "2",
+        "prediction": "2",
+        "exact_match": true,
+        "task_selected": "vqa"
+      },
+      {
+        "image_id": "09889_0000.png",
+        "question": "How many storage tanks are identified in the image?",
+        "ground_truth": "3",
+        "prediction": "5",
+        "exact_match": false,
+        "task_selected": "vqa"
+      },
+      {
+        "image_id": "P1398_0020.png",
+        "question": "How many military aircraft are visible?",
+        "ground_truth": "2",
+        "prediction": "2",
+        "exact_match": true,
+        "task_selected": "vqa"
+      },
+      {
+        "image_id": "09559_0000.png",
+        "question": "How many vehicles are present in the image?",
+        "ground_truth": "1",
+        "prediction": "1",
+        "exact_match": true,
+        "task_selected": "vqa"
+      },
+      {
+        "image_id": "P1619_0030.png",
+        "question": "How many bridges are visible in the image?",
+        "ground_truth": "1",
+        "prediction": "0",
+        "exact_match": false,
+        "task_selected": "vqa"
+      },
+      {
+        "image_id": "P0524_0004.png",
+        "question": "How many ships are in the image?",
+        "ground_truth": "1",
+        "prediction": "1",
+        "exact_match": true,
+        "task_selected": "vqa"
+      },
+      {
+        "image_id": "P2630_0002.png",
+        "question": "How many large vehicles are visible in the image?",
+        "ground_truth": "8",
+        "prediction": "1",
+        "exact_match": false,
+        "task_selected": "vqa"
+      },
+      {
+        "image_id": "10868_0000.png",
+        "question": "How many vehicles are visible in the image?",
+        "ground_truth": "1",
+        "prediction": "1",
+        "exact_match": true,
+        "task_selected": "vqa"
+      },
+      {
+        "image_id": "09801_0000.png",
+        "question": "How many storage tanks are there?",
+        "ground_truth": "2",
+        "prediction": "3",
+        "exact_match": false,
+        "task_selected": "vqa"
+      },
+      {
+        "image_id": "P1356_0015.png",
+        "question": "How many bridges are there in the image?",
+        "ground_truth": "2",
+        "prediction": "0",
+        "exact_match": false,
+        "task_selected": "vqa"
+      },
+      {
+        "image_id": "P2714_0009.png",
+        "question": "How many bridges are visible?",
+        "ground_truth": "1",
+        "prediction": "1",
+        "exact_match": true,
+        "task_selected": "vqa"
+      }
+    ],
+    "object color": [
+      {
+        "image_id": "08062_0000.png",
+        "question": "What color is the surface of the tennis courts?",
+        "ground_truth": "greenish-brown",
+        "prediction": "gray",
+        "exact_match": false,
+        "task_selected": "vqa"
+      },
+      {
+        "image_id": "P2330_0004.png",
+        "question": "What color appears to dominate the image background?",
+        "ground_truth": "dark blue",
+        "prediction": "black",
+        "exact_match": false,
+        "task_selected": "vqa"
+      },
+      {
+        "image_id": "11109_0000.png",
+        "question": "What is the color of the building's roof adjacent to the tennis courts?",
+        "ground_truth": "red",
+        "prediction": "white",
+        "exact_match": false,
+        "task_selected": "vqa"
+      },
+      {
+        "image_id": "P5569_0003.png",
+        "question": "What color are the waters near the coast?",
+        "ground_truth": "blue",
+        "prediction": "blue",
+        "exact_match": true,
+        "task_selected": "vqa"
+      },
+      {
+        "image_id": "P2598_0003.png",
+        "question": "What color is the tennis court surface?",
+        "ground_truth": "orange-brown",
+        "prediction": "orange",
+        "exact_match": false,
+        "task_selected": "vqa"
+      }
+    ]
+  }
+}
