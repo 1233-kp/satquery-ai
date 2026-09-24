@@ -1,250 +1,259 @@
 # SatQuery AI
 
-Agentic vision-language assistant for remote-sensing image analysis — built for
-SIH 2026 (PS 26167). Accepts single images, optical+SAR pairs, and bi-temporal
-pairs, classifies the query, routes to the right specialist pipeline, and
-returns an evidence-grounded answer with a full, auditable execution trace.
+**An agentic vision-language assistant for multimodal remote-sensing image analysis — through plain-text questions.**
 
+[![SIH 2026](https://img.shields.io/badge/SIH%202026-PS%2026167-1B998B?style=flat-square)](#)
+[![Organization](https://img.shields.io/badge/ISRO-Space%20Applications%20Centre-0B2545?style=flat-square)](#)
+[![Python](https://img.shields.io/badge/Python-3.12-3776AB?style=flat-square&logo=python&logoColor=white)](#)
+[![FastAPI](https://img.shields.io/badge/FastAPI-Backend-009688?style=flat-square&logo=fastapi&logoColor=white)](#)
+[![React](https://img.shields.io/badge/React-Frontend-61DAFB?style=flat-square&logo=react&logoColor=black)](#)
+[![PyTorch](https://img.shields.io/badge/PyTorch-Models-EE4C2C?style=flat-square&logo=pytorch&logoColor=white)](#)
+[![License](https://img.shields.io/badge/License-MIT-lightgrey?style=flat-square)](#license)
+
+> Built for **Smart India Hackathon 2026**, Problem Statement **26167** — *"SatQuery AI: An Interactive Vision-Language Assistant for Multimodal Remote Sensing Image Analysis through Text Queries"*, issued by the Indian Space Research Organisation (ISRO) / Space Applications Centre (SAC).
+
+---
+
+## Table of Contents
+
+- [Why SatQuery AI](#why-satquery-ai)
+- [What It Does](#what-it-does)
+- [System Architecture](#system-architecture)
+- [Agentic Orchestration, Step by Step](#agentic-orchestration-step-by-step)
+- [Safety & Reliability Engineering](#safety--reliability-engineering)
+- [Model Inventory](#model-inventory)
+- [Input Compatibility Matrix](#input-compatibility-matrix)
+- [Tech Stack](#tech-stack)
+- [Screenshots](#screenshots)
+- [Getting Started](#getting-started)
+- [Project Structure](#project-structure)
+- [API Overview](#api-overview)
+- [Evaluation](#evaluation)
+- [Known Limitations](#known-limitations)
+- [Roadmap](#roadmap)
+- [Team](#team)
+- [License](#license)
+
+---
+
+## Why SatQuery AI
+
+Remote-sensing AI today is a drawer full of single-purpose tools: one model for land-cover classification, another for change detection, a third for object detection — each demanding that the user already understand GIS workflows, sensor characteristics, and model selection before they can ask a single question.
+
+**SatQuery AI removes that requirement.** You upload imagery, type a question in plain English, and an **agentic controller** — not a human, not a hardcoded if/else chain — decides which specialist model (or combination of models) your question actually needs, runs it, checks its own output for red flags, and hands back an answer backed by real, inspectable evidence.
+
+This isn't a thin wrapper around a general-purpose LLM. The problem statement is explicit that a generic vision-language model without remote-sensing adaptation does not satisfy the requirement — so every specialist in this system is either fine-tuned on remote-sensing data or trained from scratch on a remote-sensing benchmark. Nothing here is "ChatGPT with a satellite photo pasted in."
+
+## What It Does
+
+| Capability | Input | What happens |
+|---|---|---|
+| **Visual Question Answering** | Single optical/SAR image | A BigEarthNet-adapted vision-language model answers free-form questions about land cover, objects, and scene content. |
+| **Scene Captioning** | Single optical/SAR image | The same fine-tuned model produces a structured natural-language description of the scene. |
+| **Text-Guided Grounding** | Single image + a phrase | Zero-shot open-vocabulary detection (Grounding DINO) draws bounding boxes around whatever the query refers to — "the water body," "the houses" — with a real, measured detection confidence. |
+| **Bi-Temporal Change Detection** | Two images, same location, different dates | A custom Siamese U-Net localizes and quantifies change pixel-by-pixel; a deterministic answer template (not free-form generation) reports the percentage changed, severity, and location — grounded in the actual computed statistics. |
+| **Change-VQA & Conversational Follow-Up** | Bi-temporal pair + a question | Ask about the change in natural language, then keep asking — follow-ups reuse the already-computed evidence instead of re-running detection. |
+| **Optical + SAR Fusion** | Co-registered optical and radar image pair | A dual-branch gated fusion network combines spectral (optical) and structural (SAR, day/night, cloud-penetrating) information to estimate built-up, water, and vegetation composition. |
+| **Agentic Orchestration** | Any of the above | A controller classifies the query, validates input compatibility, selects the right specialist(s), and returns a full, auditable execution trace — task, model, parameters, and evidence. |
+
+## System Architecture
+
+```mermaid
+flowchart TD
+    A[User query + uploaded imagery] --> B[Task Classifier]
+    B --> C[Input / Modality Compatibility Check]
+    C -->|incompatible| C1[Explicit error or degraded warning\n— never a silent wrong answer]
+    C -->|compatible| D[Tool / Specialist Selection]
+    D --> E1[VQA / Captioning\nSmolVLM-500M + LoRA]
+    D --> E2[Text-Guided Grounding\nGrounding DINO]
+    D --> E3[Change Detection\nSiamese U-Net]
+    D --> E4[Optical + SAR Fusion\nGated Fusion Network]
+    E1 --> F[Evidence Extraction]
+    E2 --> F
+    E3 --> F
+    E4 --> F
+    F --> G{Guard Layer}
+    G --> G1[Hallucination Guard\nstrips fabricated places / areas / dates]
+    G --> G2[OOD Guard\nflags inputs unlike the training distribution]
+    G --> G3[Grounding Scope Guard\nflags degenerate full-image boxes]
+    G1 --> H[Response Assembly]
+    G2 --> H
+    G3 --> H
+    H --> I[Answer + Visual Evidence + Confidence + Execution Trace]
 ```
-SatQuery-AI/
-├── backend/     FastAPI service — orchestrator, specialist services, API
-├── frontend/    React + Vite + TS console UI
-└── render.yaml  One-click Render deploy blueprint for both services
-```
 
-Everything currently runs in **mock mode**: the orchestrator, task
-classification, compatibility checks, upload handling, and trace assembly are
-all real; the "model" outputs are deterministic placeholders computed from the
-actual uploaded images (real pixel diffing for change detection, real
-brightness/backscatter stats for fusion) so the whole stack is demoable today.
-Swap in trained models by flipping `VQA_MODE` / `CHANGE_MODE` / `FUSION_MODE`
-to `real` in `backend/.env` once they're ready — see "Wiring in real models"
-below.
+Every box in that diagram is a real, separately testable module in this codebase — not a conceptual layer that collapses into one big model call. The execution trace returned to the frontend names the actual task classification, the actual specialist selected, and the actual parameters used, so a judge (or a developer) can audit exactly what happened for any given query.
 
-## Run locally (VS Code / terminal)
+## Agentic Orchestration, Step by Step
 
-### 1. Backend
+1. **Interpret the query** — the task classifier reads the natural-language question and the selected input mode, and decides which task family it belongs to (`vqa`, `captioning`, `grounding`, `change_vqa`, `fusion`).
+2. **Validate the input** — before any model runs, the system checks image count, modality (optical vs. SAR), format, and — for paired inputs — dimension and pairing compatibility. A mismatched SAR-only pair submitted as a cross-modal pair, for example, degrades gracefully with an explicit warning rather than crashing or silently guessing.
+3. **Select the specialist(s)** — the orchestrator picks from a registry of remote-sensing-adapted models; nothing is chosen by the user manually.
+4. **Execute with permitted parameters only** — the controller configures task-specific parameters (e.g. which OOD threshold, which box-confidence cutoff) rather than exposing arbitrary knobs.
+5. **Extract evidence** — real computed numbers: pixel-level change percentage, detection confidence, fusion class probabilities — never invented figures.
+6. **Guard the output** — hallucination, out-of-distribution, and grounding-scope checks run before anything reaches the user.
+7. **Assemble the response** — text answer, visual evidence (change mask / bounding boxes), confidence (where it's actually meaningful), and a full execution trace, all in one response.
+
+Follow-up questions in the same conversation thread re-enter this pipeline: the orchestrator can route a second question in the same thread to a *different* specialist than the first — for example, a descriptive VQA question followed by two grounding-based counting questions — without the user re-uploading anything or picking a new mode.
+
+## Safety & Reliability Engineering
+
+Most of the hardening in this project came from deliberately trying to break it, not from assuming it worked. A few examples of what's actually built in:
+
+- **Deterministic, evidence-grounded answers for change detection and fusion.** Early testing showed that letting a language model narrate change results led to fabricated details (a "parking lot" that didn't exist, a bare contradictory "yes"/"no"). Both specialists now build their answer text from a fixed template populated with real detector output only — never free-form narration.
+- **Hallucination guard.** A rule-based filter strips fabricated country names, invented area/sqm figures, and made-up capture dates from captioning output — each rule added after a specific, observed failure and tested against false-positive traps (pixel dimensions, aspect ratios, scale bars) to make sure it doesn't over-trigger.
+- **Out-of-distribution (OOD) guard.** Statistical z-score comparison against a training-distribution reference profile flags inputs that look nothing like what a specialist was trained on — reused across change detection and fusion, and extended to a compound two-tier check after cross-dataset testing (LEVIR-CD → OSCD, BigEarthNet → SEN12MS-CR) revealed a real coverage gap in the original single-threshold design.
+- **Grounding scope guard.** A bounding box covering an implausibly large fraction of the image is flagged as low-confidence localization rather than returned as a normal detection.
+- **Confidence shown only where it's real.** Detection confidence (grounding) and classification probability (change detection, fusion) are genuine, measurable quantities and are shown. Token-generation likelihood for VQA/captioning does **not** reliably predict correctness, so it is intentionally *not* presented as a calibrated percentage.
+- **No silent failures.** Every incompatible-input scenario in the orchestrator's test suite either hard-errors with a specific message or soft-degrades with an explicit, traced warning — confirmed with negative controls (matching inputs produce no warning) so the checks aren't just always-on noise.
+
+## Model Inventory
+
+| Component | Model | Basis / Dataset | Adaptation | Params | Status |
+|---|---|---|---|---|---|
+| VQA / Captioning | SmolVLM-500M-Instruct + LoRA | BigEarthNet.txt (Sentinel-1/2 image-text pairs) | Fine-tuned (PEFT/LoRA) | ~500M base + LoRA adapter | Trained, deployed |
+| Text-Guided Grounding | Grounding DINO | Zero-shot open-vocabulary detection | Zero-shot (no fine-tune) | — | Wired, domain-gap documented |
+| Change Detection | Custom Siamese U-Net (FC-Siam-diff style) | LEVIR-CD | Trained from scratch | 7.76M | Trained, deployed |
+| Optical + SAR Fusion | Custom dual-branch gated fusion net | BigEarthNet Sentinel-1/2 pairs, weak multi-label supervision | Trained from scratch | 1.05M | Trained, deployed |
+| Orchestrator | Rule + classifier-driven controller | — | Custom | — | Deployed |
+
+The change-detection and fusion networks are genuinely custom architectures — a true weight-shared Siamese encoder with multi-level feature differencing (not a naive image-difference trick), and a learned sigmoid gate that lets the fusion network down-weight whichever modality is less informative per scene (not simple concatenation).
+
+## Input Compatibility Matrix
+
+| Mode | Inputs | Supports | Formats |
+|---|---|---|---|
+| Single image | 1 image | VQA, captioning, grounding | GeoTIFF, TIFF, PNG/JPEG (benchmark datasets) |
+| Bi-temporal pair | 2 images, same location, different dates | Change detection, change-VQA, change description | GeoTIFF, TIFF, PNG/JPEG (benchmark datasets) |
+| Optical + SAR pair | 1 optical + 1 SAR image, co-registered | Cross-modal joint analysis / fusion | GeoTIFF, TIFF |
+
+Mismatched pairs (wrong modality count, dimension mismatch, SAR-only submitted as a cross-modal pair) are explicitly checked and reported — see [Safety & Reliability Engineering](#safety--reliability-engineering).
+
+## Tech Stack
+
+**Frontend** — React, TypeScript, Vite
+**Backend** — FastAPI (Python 3.12), SQLAlchemy, SQLite
+**AI / ML** — PyTorch, Transformers, PEFT (LoRA), Grounding DINO
+**Remote Sensing** — rasterio, GeoTIFF band handling, Sentinel-1 (SAR) / Sentinel-2 (optical)
+**Auth** — JWT (python-jose), bcrypt password hashing, OAuth 2.0 (Google, GitHub) via Authlib
+**Datasets** — BigEarthNet (fine-tuning), LEVIR-CD (change detection), RSVQA / VRSBench / CDVQA (evaluation)
+**Deployment** — Oracle Cloud Always Free (backend, Cloudflare Tunnel), Render (frontend static site)
+
+## Screenshots
+
+> Add screenshots or a short GIF of the console here — the input-mode selector, an execution trace panel, and a change-detection result with its mask overlay are the most convincing single frames for a reader skimming the repo.
+
+## Getting Started
+
+### Backend
 
 ```bash
 cd backend
-python -m venv .venv
-
-# Windows
-.venv\Scripts\activate
-# macOS / Linux
-source .venv/bin/activate
-# .\venv\Scripts\Activate.ps1
+python -m venv venv
+./venv/Scripts/activate        # Windows
+# source venv/bin/activate     # macOS / Linux
 pip install -r requirements.txt
-cp .env.example .env
-
 uvicorn app.main:app --reload --host 127.0.0.1 --port 8000
 ```
 
-- API docs: http://127.0.0.1:8000/docs
-- Health check: http://127.0.0.1:8000/health
+- API docs: `http://127.0.0.1:8000/docs`
+- Health check: `http://127.0.0.1:8000/health`
 
-### 2. Frontend
-
-In a new terminal:
+### Frontend
 
 ```bash
 cd frontend
 npm install
 cp .env.example .env      # VITE_API_URL=http://localhost:8000
-
 npm run dev
 ```
 
-- App: http://localhost:5173
+- App: `http://localhost:5173`
 
-Open the app, pick an input mode, upload the required image(s) (PNG/JPEG/TIFF),
-type a query (or click an example chip), and run the analysis. The right-hand
-panel shows the full orchestrator execution trace — task classification, tool
-selection, pipeline steps, and confidence.
-
-### 3. Run backend tests (once you add them under `backend/tests/`)
-
-```bash
-cd backend
-pip install pytest
-pytest -v
-```
-
-## Wiring in real models (Day 2-4 of the build)
-
-The heavy ML dependencies are kept out of `requirements.txt` on purpose so
-the base app installs fast (and deploys cleanly on Render's free tier).
-When you're ready to plug in trained models:
-
-```bash
-cd backend
-pip install -r requirements-ml.txt
-```
-
-Then in `backend/.env`:
+## Project Structure
 
 ```
-VQA_MODE=real
-VQA_LORA_PATH=./checkpoints/vqa_lora/best     # your fine-tuned LoRA adapter
-
-CHANGE_MODE=real
-CHANGE_DETECTION_CHECKPOINT=./checkpoints/change_unet/best_model.pt
-
-FUSION_MODE=real
-FUSION_CHECKPOINT=./checkpoints/fusion_net/best_model.pt
+SatQuery-AI/
+├── backend/
+│   ├── app/
+│   │   ├── main.py
+│   │   ├── models.py               # SQLAlchemy models (User, AnalysisRecord, ...)
+│   │   ├── routers/                # auth, analysis, reports, health
+│   │   └── services/
+│   │       ├── orchestrator.py     # agentic controller
+│   │       ├── task_classifier.py
+│   │       ├── vqa_service.py
+│   │       ├── change_service.py
+│   │       ├── fusion_service.py
+│   │       ├── grounding_service.py
+│   │       ├── hallucination_guard.py
+│   │       ├── ood_guard.py
+│   │       └── geo_preprocessing.py
+│   ├── tests/
+│   └── evaluation_results/
+├── frontend/
+│   └── src/
+│       ├── components/
+│       └── pages/
+└── README.md
 ```
 
-Extension points to fill in as you train:
-- `backend/app/services/vqa_service.py` — `_load_real_model` / `_real_answer`
-  already call SmolVLM-500M-Instruct + an optional PEFT LoRA adapter; point
-  `VQA_LORA_PATH` at your fine-tuned checkpoint once it exists.
-- `backend/app/services/change_service.py` — expects a `SiameseUNet` class at
-  `backend/app/services/models/siamese_unet.py` (create this when you write
-  the training script).
-- `backend/app/services/fusion_service.py` — expects an `OpticalSARFusionNet`
-  class at `backend/app/services/models/fusion_net.py`.
+## API Overview
 
-None of the orchestrator, routing, or trace-assembly logic needs to change —
-only these three service internals.
+| Method | Endpoint | Purpose | Auth |
+|---|---|---|---|
+| POST | `/analysis` | Run a query against uploaded imagery | Optional |
+| GET | `/analysis/{id}` | Retrieve a past analysis | Optional |
+| GET | `/analysis/history` | List past analyses for the user | Required |
+| POST | `/auth/register` | Create an account | — |
+| POST | `/auth/login` | Email/password login | — |
+| GET | `/auth/google/login` / `/auth/github/login` | OAuth login | — |
+| GET | `/auth/me` | Current user profile | Required |
+| GET | `/health` | Liveness check | — |
 
-**`backend/checkpoints/` is gitignored** — the trained weights themselves
-(~757MB across the LoRA adapter, Siamese U-Net, and fusion net, plus their
-per-epoch snapshots) aren't in this repo; only empty `vqa_lora/`,
-`change_unet/`, and `fusion_net/` placeholder directories (via `.gitkeep`)
-are, so the expected layout is visible on a fresh clone. To get real weights
-into those folders:
-- **Train from scratch** using `backend/scripts/train_vqa_lora.py`,
-  `train_change_unet.py`, and `train_fusion_net.py` against the datasets
-  `scripts/prepare_*.py` pull from their public sources, or
-- **Copy them from wherever they're already deployed** — currently the
-  Oracle Cloud VM running the real-model backend has its own full copy,
-  transferred there directly (not via this repo); `scp` them down from
-  there if you just need the existing trained weights rather than
-  retraining.
+*(Exact paths may differ slightly by version — see `backend/app/routers/` for the authoritative list.)*
 
-## Deploying to Render
+## Evaluation
 
-This repo is on GitHub at
-[github.com/1233-kp/satquery-ai](https://github.com/1233-kp/satquery-ai)
-but **has never actually been deployed to Render** — `render.yaml`
-describes the intended setup, but creating the Render services,
-registering OAuth redirect URIs, and setting secrets all require someone
-with dashboard access to Render, Google Cloud Console, and the GitHub
-OAuth App to do it by hand. What follows is that exact checklist.
+SatQuery AI is evaluated against the exact public benchmarks named in the problem statement, not substitutes:
 
-**Step 1 — point Render at the GitHub repo.** Render's Blueprint flow
-(below) reads `render.yaml` directly from
-[github.com/1233-kp/satquery-ai](https://github.com/1233-kp/satquery-ai) —
-no separate push needed, it's already there.
+| Benchmark | Task | What was found |
+|---|---|---|
+| **BigEarthNet** (held-out) | VQA / captioning fine-tune validation | Training/validation loss improved monotonically over 3 epochs (0.897→0.340 train, 0.559→0.345 val); binary/MCQ-style questions reach 63–73% held-out accuracy. |
+| **RSVQA-LR** | VQA accuracy by category | Verified against the official Zenodo release (image- and answer-level match confirmed). "Count" category accuracy is low (~7%) — traced to a documented property of the benchmark, where ground truth derives from vector/GIS data at a resolution finer than the displayed thumbnail, not a data or pipeline bug. |
+| **VRSBench** | Captioning / VQA / grounding | Sourced from the official release; grounding tested directly against real remote-sensing scenes (see below). |
+| **CDVQA** | Change-based VQA | Revealed a genuine structural gap: our binary change detector has no semantic class information, while ~95% of CDVQA questions require naming a specific land-cover class (e.g. "did *buildings* change?") — documented honestly as a model-architecture gap, not bridged with a cosmetic fix. |
+| **Grounding DINO** (zero-shot) | Text-guided detection, 4 scene types | 3/8 correct, 1/8 partial, 4/8 failed on a hand-verified test set — accurate on moderate-density scenes with individually resolvable objects, degrading on dense industrial/urban scenes and very-wide-area imagery. Flagged as the motivation for a future LAE-DINO (remote-sensing-specific) upgrade. |
+| **Optical + SAR Fusion** | Multi-label composition (BigEarthNet-19) | Macro-F1 0.482 at convergence; strong on high-support classes (Arable land 0.91, Urban fabric 0.70), weak on rare classes — expected given class imbalance, not a training bug. |
 
-**Step 2 — create the services.** In the Render dashboard, "New > Blueprint"
-pointed at the repo reads `render.yaml` and creates both services (backend
-web service + frontend static site) automatically, with the model modes,
-CPU device settings, and plan tier already set correctly for real models
-(see below for why). Manual service creation works too if you'd rather not
-use Blueprint — just match `render.yaml`'s `buildCommand`/`startCommand`.
+Every number above was obtained by running inference through the real orchestrator pipeline against the actual official benchmark release — not a bypassed direct model call, and not a friendlier substitute dataset. Where results are weak, that's stated plainly rather than rounded up.
 
-**Step 3 — set the 5 secrets `render.yaml` leaves blank.** These are marked
-`sync: false` so they're never committed in plaintext; Render prompts for
-them on first deploy (Dashboard → satquery-ai-backend → Environment):
+## Known Limitations
 
-| Key | Where it comes from |
-|---|---|
-| `JWT_SECRET_KEY` | Generate a fresh random secret (e.g. `openssl rand -hex 32`) — do not reuse the local dev value from `backend/.env`. |
-| `GOOGLE_CLIENT_ID` / `GOOGLE_CLIENT_SECRET` | Google Cloud Console → APIs & Services → Credentials → your OAuth client. |
-| `GITHUB_CLIENT_ID` / `GITHUB_CLIENT_SECRET` | GitHub → Settings → Developer settings → OAuth Apps → your app. |
+- **Grounding domain gap**: Grounding DINO is zero-shot and not remote-sensing-fine-tuned; performance degrades on dense/industrial and very-wide-area scenes (see Evaluation).
+- **CDVQA schema gap**: the binary change detector cannot answer class-specific change questions without a semantic/multi-class upgrade — a model-level fix, not a routing fix.
+- **VQA/captioning confidence is intentionally not shown** as a percentage, since token-likelihood doesn't predict correctness — this is a deliberate design choice, not a missing feature.
+- **Hallucination guard coverage** is targeted (countries seen in training, fabricated areas, fabricated dates) rather than a general-purpose geo-NER system; named landmarks outside the training-country list are not yet caught.
+- **OOD guard** is calibrated against a specific reference distribution and cross-dataset test set; broader sensor/geography coverage would sharpen it further.
 
-**Step 4 — register the production redirect URIs.** This was flagged as
-pending when auth was first built and still is — these only exist once the
-backend is actually deployed (Step 2) and its real URL is known:
-- Google Cloud Console, same OAuth client as above → Authorized redirect
-  URIs → add `https://<your-backend>.onrender.com/auth/google/callback`
-- GitHub OAuth App settings → Authorization callback URL → set (GitHub
-  allows only one) `https://<your-backend>.onrender.com/auth/github/callback`
+## Roadmap
 
-Do this *in addition to*, not instead of, the localhost URIs already there
-if you still want OAuth to work locally too.
+- Semantic, multi-class change detection to close the CDVQA schema gap
+- LAE-DINO (Locate Anything on Earth) integration for remote-sensing-native grounding
+- Confidence calibration research for VQA/captioning
+- Expanded hallucination-guard coverage (general geo-NER for landmarks)
+- Per-account data isolation and workspace management
+- GIS map interface and scheduled-monitoring workflows
 
-**Step 5 — verify the three URL env vars.** `render.yaml` sets
-`CORS_ORIGINS`, `FRONTEND_URL`, and `VITE_API_URL` to the standard
-`https://satquery-ai-<backend|frontend>.onrender.com` pattern, but Render
-appends a random suffix instead if those exact names were already taken.
-Check the actual assigned URLs in the dashboard after first deploy and
-update these three if they don't match — a mismatch here breaks CORS and
-OAuth redirects in a way that works fine locally and only surfaces once
-deployed.
+## Team
 
-### Real models on Render's CPU-only infrastructure
+**Orbital Minds 133** — Smart India Hackathon 2026, Problem Statement 26167
+Organization: Indian Space Research Organisation (ISRO) / Department of Space
 
-`render.yaml` is set up for `VQA_MODE`/`CHANGE_MODE`/`FUSION_MODE`/
-`GROUNDING_MODE=real`, not the mock mode this section used to recommend.
-Concretely, measured locally with CUDA hidden (`CUDA_VISIBLE_DEVICES=""`) to
-simulate Render's CPU-only environment:
+## License
 
-- **RAM**: all four real models loaded eagerly at startup (see below) use
-  ~2.6GB resident; after exercising one query per task type it settles at
-  ~3.5GB and **stays flat** under repeated requests (checked directly — not
-  a slow leak). Render's Standard plan (2GB) is not enough and will likely
-  OOM; **Pro (4GB)** is the technical minimum with little headroom; **Pro
-  Plus (8GB)**, which `render.yaml` uses, gives real headroom for concurrent
-  users rather than just single-request steady-state.
-- **Latency** (same CPU-only local simulation, one query per task, cold
-  models already warm from startup): VQA 3.9s, grounding 1.4s, change
-  detection 0.15s, optical+SAR fusion 1.0s, **captioning 43s**. Captioning's
-  latency is real and load-bearing for demo planning — it's SmolVLM
-  generating up to 256 tokens autoregressively with no batching or KV-cache
-  tricks beyond what `transformers` does by default, and CPU token-by-token
-  generation is simply slow. Don't rely on a live captioning query fitting
-  inside a short demo window; consider having a pre-run example ready as a
-  fallback.
-- **Dtype**: already correct as of this codebase — `vqa_service.py` uses
-  fp32 on CPU (not fp16, which has poor/emulated CPU support and would be
-  slower, not faster, unlike on the RTX 3050 this was developed on); the
-  change/fusion/grounding checkpoints were all verified fp32-native already,
-  so no conversion needed there either.
-- **Startup**: all four services now load once during app startup (a
-  FastAPI `lifespan` handler in `app/main.py`), not lazily on each
-  service's first request — check the boot logs for all four load
-  messages before considering the deploy healthy; a failure here surfaces
-  immediately instead of on some later user's first query.
-- **Build**: `requirements.txt` alone does *not* include torch/transformers/
-  rasterio (see its own header comment) — `render.yaml`'s `buildCommand`
-  installs from `requirements-ml.txt`, and installs `torch`/`torchvision`
-  from the CPU-only wheel index first to avoid pulling PyPI's default
-  CUDA-bundled build (several GB larger than needed on a GPU-less target).
-  Not yet confirmed against Render's actual build-time/disk limits for the
-  Pro Plus tier specifically — that requires a real deploy to observe.
-- **Proxy headers**: Render terminates TLS at its edge and forwards plain
-  HTTP internally; without `--forwarded-allow-ips='*' --proxy-headers` on
-  the uvicorn start command (already in `render.yaml`), `request.url_for()`
-  builds `http://` OAuth redirect URIs instead of `https://`, which then
-  mismatch whatever's registered in Google/GitHub's console and break OAuth
-  in production despite working locally. Verified this fix directly against
-  a simulated proxy header, not just reasoned about.
+MIT — see [`LICENSE`](LICENSE) for details.
 
-Render's disk for a standard web service is ephemeral, so the SQLite history
-resets on redeploy/restart — fine for a demo, not for production data.
+---
 
-**Not yet done — needs an actual deploy, which needs Render dashboard
-access this session didn't have:** confirming the build completes within
-Pro Plus's real build-time/disk limits, and measuring true end-to-end
-latency and OAuth login on the live URL itself rather than this local
-CPU-only simulation. Once deployed, re-run the same per-task-type latency
-check directly against the live URL — real network latency and Render's
-actual CPU class may differ from this local approximation in either
-direction.
-
-## What's implemented vs. what's next
-
-| Requirement (PS 26167) | Status |
-|---|---|
-| Input upload + compatibility checking | ✅ done |
-| Single-image VQA | ✅ done (mock; real hook ready) |
-| Second single-image task (captioning) | ✅ done (mock; real hook ready) |
-| Bi-temporal change description / change-VQA | ✅ done (mock; real hook ready) |
-| Optical+SAR cross-modal analysis | ✅ done (mock; real hook ready) |
-| Agentic orchestration + auditable trace | ✅ done |
-| Remote-sensing adaptation (LoRA fine-tune on BigEarthNet.txt) | ⏳ Day 2 |
-| Trained Siamese U-Net on LEVIR-CD | ⏳ Day 3 |
-| Trained optical+SAR fusion net | ⏳ Day 4 |
-| PDF mission report download | ⏳ Day 5 |
+<p align="center"><i>Built for judges who read the code, not just the demo.</i></p>
