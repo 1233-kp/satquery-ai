@@ -24,7 +24,6 @@
 - [Model Inventory](#model-inventory)
 - [Input Compatibility Matrix](#input-compatibility-matrix)
 - [Tech Stack](#tech-stack)
-- [Screenshots](#screenshots)
 - [Getting Started](#getting-started)
 - [Project Structure](#project-structure)
 - [API Overview](#api-overview)
@@ -138,26 +137,6 @@ Mismatched pairs (wrong modality count, dimension mismatch, SAR-only submitted a
 **Auth** — JWT (python-jose), bcrypt password hashing, OAuth 2.0 (Google, GitHub) via Authlib
 **Datasets** — BigEarthNet (fine-tuning), LEVIR-CD (change detection), RSVQA / VRSBench / CDVQA (evaluation)
 **Deployment** — Oracle Cloud Always Free (backend, Cloudflare Tunnel), Render (frontend static site)
-
-## Screenshots
-
-### Hero Page
-![Hero Page](screenshots/hero.png)
-
-### Overview/Dashboard
-![Overview](screenshots/overview.png)
-
-### Single Image Analysis
-![Sinlge Image-Analysis](screenshots/single_image.png)
-
-### Execution_trace
-![Execution-Trace-Page](screenshots/execution_trace.png)
-
-### Bitemporal-Visual-Evidence
-![Bi-temporal](screenshots/bitemporal-visual-evidence.png)
-
-### Optical_SAR_Fusion
-![Optical-SAR-fusion](screenshots/optical_sar_geotiff.png)
 
 ## Getting Started
 
