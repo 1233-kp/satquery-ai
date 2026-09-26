@@ -235,20 +235,20 @@ Every number above was obtained by running inference through the real orchestrat
 
 SatQuery AI's current form proves the agentic architecture end-to-end on real benchmarks. The roadmap below is what turns that prototype into an operational tool for exactly the missions the problem statement names — agricultural monitoring, disaster management, urban planning, forest and water-resource assessment, and infrastructure mapping — without changing the core design.
 
-**Phase 1 — Close the evaluation gaps (0–1 month)**
+**Phase 1 — Close the evaluation gaps (0–0.5 month)**
 Fix the two honestly-documented weak points before anything else, since they gate everything downstream:
 - **Semantic, multi-class change detection.** Upgrade the binary Siamese U-Net to a class-aware architecture so change-VQA can answer *"what* changed" (buildings, vegetation, water), not just *"how much."* This single upgrade closes the CDVQA schema gap identified during evaluation and unlocks disaster-response queries like *"did the built-up area near the river increase after the flood?"*
 - **LAE-DINO integration.** Replace zero-shot Grounding DINO with a remote-sensing-native detector, directly targeting the dense-scene and wide-area failure modes already measured and documented in this README.
 - **Confidence calibration for VQA/captioning.** Move from "uncalibrated, withheld" to a genuine calibrated confidence signal (e.g. temperature scaling against held-out accuracy), so every specialist — not just grounding, change detection, and fusion — reports a number that means what it says.
 
-**Phase 2 — Mission-ready workflows (1–3 months)**
+**Phase 2 — Mission-ready workflows (0.5–1 months)**
 Turn single-query analysis into the kind of repeated, longitudinal monitoring ISRO/SAC teams actually run:
 - **Scheduled monitoring & change alerts.** Point SatQuery AI at a location and a revisit cadence; it re-runs change detection automatically and raises an alert when the change magnitude crosses a threshold — the natural extension of a system that already computes real change statistics, not narration.
 - **GIS map interface with georeferenced overlays.** Render change masks, grounding boxes, and fusion composition directly on a map (leveraging the GeoTIFF/CRS handling already in the pipeline), so results plug into existing GIS workflows instead of living only inside the app.
 - **Automated Sentinel-1/2 acquisition.** Pull fresh imagery for a region of interest directly from open Copernicus/Sentinel APIs, removing manual upload as the only entry point.
 - **Domain playbooks.** Pre-built query templates and dashboards for the PS's named domains — flood extent (disaster management), crop-stage change (agriculture), encroachment detection (urban planning), deforestation tracking (forest monitoring) — each just a saved configuration on top of the existing specialists.
 
-**Phase 3 — Platform hardening for real deployment (3–6 months)**
+**Phase 3 — Platform hardening for real deployment (1–2 months)**
 - **Multi-user organizations with per-account data isolation**, so a district office, a research team, and an individual analyst can each work in the same deployment without seeing each other's imagery or history.
 - **Human-in-the-loop validation**, letting a domain expert confirm or correct a flagged OOD/low-confidence result, with that feedback looped back into future calibration.
 - **Model registry & versioning**, so a retrained specialist can be evaluated against the same benchmark suite before it ever reaches production — turning this README's evaluation methodology into a repeatable CI step rather than a one-time exercise.
