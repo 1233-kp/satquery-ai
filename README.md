@@ -220,8 +220,7 @@ Upload co-registered optical (Sentinel-2) + SAR (Sentinel-1) pair
 | **Optical+SAR Fusion** | Custom dual-branch gated fusion net | Sentinel-1/Sentinel-2 joint analysis | 🟢 Active |
 | **Hallucination Guard** | Rule-based filter | Fabricated place/area/date detection | 🟢 Active |
 | **OOD Guard** | Statistical z-score check | Cross-dataset distribution-shift detection | 🟢 Active |
-| **Semantic Change Detection** | Multi-class upgrade to the Siamese U-Net | Class-aware change ("what changed") | 🔵 Roadmapped |
-| **LAE-DINO Grounding** | Remote-sensing-native detector | Dense-scene / wide-area localization | 🔵 Roadmapped |
+| **Semantic Change Detection** | Multi-class upgrade to the Siamese U-Net | Class-aware change ("what changed") | 🟢 Active |
 
 ---
 
