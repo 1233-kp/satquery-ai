@@ -1,326 +1,801 @@
 <p align="center">
   <img src="https://img.shields.io/badge/🏆_SIH-2026-1B998B?style=for-the-badge" alt="SIH 2026"/>
-  <img src="https://img.shields.io/badge/PS-26167-0B2545?style=for-the-badge" alt="PS 26167"/>
+  <img src="https://img.shields.io/badge/PS-26167-0B2545?style=for-the-badge" alt="Problem Statement 26167"/>
   <img src="https://img.shields.io/badge/React-Vite-61DAFB?style=for-the-badge&logo=react&logoColor=black" alt="React"/>
   <img src="https://img.shields.io/badge/FastAPI-Backend-009688?style=for-the-badge&logo=fastapi" alt="FastAPI"/>
-  <img src="https://img.shields.io/badge/PyTorch-Custom%20Models-EE4C2C?style=for-the-badge&logo=pytorch" alt="PyTorch"/>
-  <img src="https://img.shields.io/badge/HuggingFace-SmolVLM%20%2B%20LoRA-FFD21E?style=for-the-badge&logo=huggingface" alt="HuggingFace"/>
-  <img src="https://img.shields.io/badge/No%20Generic%20LLM-Domain--Adapted%20Only-critical?style=for-the-badge" alt="No generic LLM"/>
+  <img src="https://img.shields.io/badge/PyTorch-Custom_Models-EE4C2C?style=for-the-badge&logo=pytorch" alt="PyTorch"/>
+  <img src="https://img.shields.io/badge/HuggingFace-SmolVLM_+_LoRA-FFD21E?style=for-the-badge&logo=huggingface" alt="Hugging Face"/>
 </p>
 
 <h1 align="center">🛰️ SatQuery AI</h1>
 
 <p align="center">
-  <strong>An Agentic Vision-Language Assistant for Multimodal Remote-Sensing Image Analysis</strong><br/>
-  <em>Ask a satellite image a question in plain English. An orchestrator — not a human, not a switch statement —<br/>
-  reads the query, picks the right remote-sensing specialist, runs it, checks its own output, and answers with evidence.</em>
+  <strong>An Agentic Vision-Language Assistant for Multimodal Remote-Sensing Image Analysis</strong>
 </p>
 
 <p align="center">
-  <a href="#-why-this-exists">Why</a> •
+  <em>Ask a satellite image a question in plain English.</em>
+</p>
+
+<p align="center">
+  SatQuery AI converts natural-language questions into remote-sensing analysis workflows,
+  selects the appropriate specialist model, executes the analysis, validates the result,
+  and returns an evidence-backed answer with visual outputs and an auditable execution trace.
+</p>
+
+<p align="center">
+  <a href="#-the-problem">Problem</a> •
+  <a href="#-the-solution">Solution</a> •
+  <a href="#-see-it-in-action">Demo</a> •
   <a href="#-capabilities">Capabilities</a> •
-  <a href="#️-system-architecture">Architecture</a> •
-  <a href="#-agentic-workflow">Workflow</a> •
-  <a href="#-model-zoo">Model Zoo</a> •
-  <a href="#-safety--reliability-engineering">Safety Engineering</a> •
-  <a href="#-getting-started">Getting Started</a> •
+  <a href="#-innovation">Innovation</a> •
   <a href="#-evaluation">Evaluation</a> •
-  <a href="#-team">Team</a>
+  <a href="#-architecture">Architecture</a> •
+  <a href="#-getting-started">Getting Started</a>
 </p>
 
 ---
 
-## 🎯 Why This Exists
+## 🎯 The Problem
 
-Built for **Smart India Hackathon 2026**, Problem Statement **26167**, issued by **ISRO / the Space Applications Centre (SAC)**.
+Remote-sensing imagery contains valuable information about land cover, infrastructure,
+environmental change, and other geographic phenomena. Extracting that information,
+however, often requires separate models, GIS workflows, preprocessing steps, and
+knowledge of which specialist tool should be used for a particular question.
 
-Most remote-sensing AI is a drawer of single-purpose tools — one model for land-cover classification, another for change detection, a third for object counting — each demanding that the user already understand GIS workflows and model selection before asking a single question.
+A user should not have to understand the underlying model stack before asking:
 
-The problem statement is explicit: **a generic vision-language model without remote-sensing adaptation does not satisfy the requirement.** So every specialist in SatQuery AI is either fine-tuned on remote-sensing data or trained from scratch on a named remote-sensing benchmark — nothing here is a general-purpose chatbot with a satellite photo pasted in.
+> **"What changed between these two satellite images?"**
 
----
+or:
 
-## ✨ Capabilities
+> **"Where are the water bodies?"**
 
-<table>
-<tr>
-<td width="50%">
+or:
 
-### 🔍 Remote-Sensing VQA
-Free-form questions about land cover, objects, and scene content, answered by **SmolVLM-500M-Instruct + a LoRA adapter fine-tuned on BigEarthNet** — not the base model, a domain-adapted one.
+> **"What objects are visible in this image?"**
 
-</td>
-<td width="50%">
+The challenge addressed by SatQuery AI is to turn these specialist remote-sensing
+workflows into a unified natural-language interface while keeping the resulting
+answers grounded in computed evidence.
 
-### 📝 Scene Captioning
-The same fine-tuned backbone produces structured natural-language scene descriptions, filtered through a **hallucination guard** before anything reaches the user.
-
-</td>
-</tr>
-<tr>
-<td width="50%">
-
-### 🎯 Text-Guided Grounding
-Zero-shot, open-vocabulary localization via **Grounding DINO** — "highlight the water body," "where are the houses" — returns real bounding boxes with a genuine, measured detection confidence.
-
-</td>
-<td width="50%">
-
-### 🔄 Bi-Temporal Change Detection
-A **from-scratch Siamese U-Net** (true weight-shared encoder, multi-level feature differencing — not an image-difference trick) trained on **LEVIR-CD**, producing a pixel-level change mask plus percentage-changed, severity, and location statistics.
-
-</td>
-</tr>
-<tr>
-<td width="50%">
-
-### 💬 Change-VQA & Conversational Follow-Up
-Ask a natural-language question about the detected change, then keep asking in the same thread — follow-ups reuse already-computed evidence instead of re-running detection from scratch.
-
-</td>
-<td width="50%">
-
-### 🌐 Optical + SAR Fusion
-A **custom dual-branch gated fusion network** — separate encoders for optical and SAR, combined through a learned sigmoid gate — estimates built-up / water / vegetation composition from a co-registered Sentinel-1/2 pair.
-
-</td>
-</tr>
-<tr>
-<td width="50%">
-
-### 🛡️ Zero-Fabrication Confidence Policy
-Detection confidence (grounding) and classification probability (change detection, fusion) are real, measured quantities and are shown. VQA/captioning confidence is **intentionally withheld** — token-likelihood doesn't predict correctness, so we don't dress it up as one.
-
-</td>
-<td width="50%">
-
-### 🤖 Agentic Orchestration
-A controller classifies the query, validates input compatibility, selects the specialist(s), and returns a **full auditable execution trace** — task, model, parameters, evidence — for every single request.
-
-</td>
-</tr>
-</table>
+Built for **Smart India Hackathon 2026**, Problem Statement **26167**, issued by
+**ISRO / the Space Applications Centre (SAC)**.
 
 ---
 
-## 🏗️ System Architecture
+## 💡 The Solution
 
-```
-┌────────────────────────────────────────────────────────────────────────┐
-│                          SatQuery AI Platform                          │
-├────────────────────────────────────────────────────────────────────────┤
-│                                                                        │
-│  ┌──────────────────────────────────────────────────────────────┐    │
-│  │              Frontend (React + TypeScript + Vite)              │    │
-│  │  ┌──────────┐  ┌───────────┐  ┌───────────┐  ┌─────────────┐  │    │
-│  │  │  Upload  │  │  Analysis │  │  Execution │  │   History /  │  │    │
-│  │  │  Portal  │  │  Console  │  │   Trace    │  │   Reports    │  │    │
-│  │  └────┬─────┘  └─────┬─────┘  └───────────┘  └─────────────┘  │    │
-│  └───────┼──────────────┼─────────────────────────────────────────┘    │
-│          ▼              ▼                                              │
-│  ┌──────────────────────────────────────────────────────────────┐    │
-│  │                   FastAPI Backend (Python 3.12)                │    │
-│  │                                                                  │    │
-│  │  ┌────────────────────────────────────────────────────────┐    │    │
-│  │  │      Input Compatibility Layer                           │    │    │
-│  │  │   Modality / Format Check → Pair Validation → Guard      │    │    │
-│  │  └──────────────────────────┬─────────────────────────────┘    │    │
-│  │                             │                                    │    │
-│  │  ┌──────────────────────────▼─────────────────────────────┐    │    │
-│  │  │        Task Classifier & Agentic Orchestrator            │    │    │
-│  │  │   Query Intent → Tool Selection → Specialist Dispatch    │    │    │
-│  │  └────┬──────────────┬───────────────┬─────────────────────┘    │    │
-│  │       ▼              ▼               ▼               ▼          │    │
-│  │  ┌─────────┐  ┌───────────┐  ┌──────────────┐  ┌─────────────┐ │    │
-│  │  │ RS-VQA /│  │  Change   │  │ Optical+SAR  │  │  Text-Guided │ │    │
-│  │  │Caption. │  │ Detector  │  │   Fusion     │  │   Grounding  │ │    │
-│  │  │SmolVLM +│  │ Siamese   │  │ Dual-Branch  │  │  Grounding   │ │    │
-│  │  │  LoRA   │  │  U-Net    │  │  Gated Net   │  │    DINO      │ │    │
-│  │  └─────────┘  └───────────┘  └──────────────┘  └─────────────┘ │    │
-│  │                                                                  │    │
-│  │  ┌────────────────────────────────────────────────────────┐    │    │
-│  │  │           Guard Layer + Evidence Assembly                 │    │    │
-│  │  │  Hallucination Guard │ OOD Guard │ Grounding Scope Guard  │    │    │
-│  │  └────────────────────────────────────────────────────────┘    │    │
-│  │                                                                  │    │
-│  │  ┌──────────────────┐   ┌──────────────────────────────────┐   │    │
-│  │  │  SQLite Storage  │   │   JWT Auth + Google/GitHub OAuth   │   │    │
-│  │  └──────────────────┘   └──────────────────────────────────┘   │    │
-│  └────────────────────────────────────────────────────────────────┘    │
-└────────────────────────────────────────────────────────────────────────┘
+SatQuery AI acts as an orchestration layer over multiple remote-sensing specialists.
+
+```text
+                    USER
+                      │
+                      │ Natural-language question
+                      ▼
+            ┌────────────────────┐
+            │    SATQUERY AI     │
+            │     ORCHESTRATOR   │
+            └─────────┬──────────┘
+                      │
+              Query / Input Analysis
+                      │
+          ┌───────────┼────────────┐
+          ▼           ▼            ▼
+        VQA /       Change      Grounding
+      Captioning   Detection
+          │           │            │
+          └───────────┼────────────┘
+                      ▼
+              Evidence Extraction
+                      │
+                Guard / Validation
+                      │
+                      ▼
+            Answer + Visual Evidence
+                      +
+               Execution Trace
 ```
 
+The system is not a single general-purpose chatbot. Each major capability is backed
+by a specialist remote-sensing pipeline, while the orchestrator determines which
+pipeline is appropriate for the request.
+
 ---
 
-## 🔄 Agentic Workflow
+# 🎥 See It in Action
+
+> **Add your final demo assets here.** Keep this section near the top of the README so
+> a judge can understand the product before reading the implementation details.
+
+### Recommended assets
+
+```text
+docs/
+└── images/
+    ├── hero.png
+    ├── vqa-demo.png
+    ├── change-detection.png
+    ├── grounding.png
+    ├── optical-sar.png
+    └── execution-trace.png
+```
+
+### Example — Natural-language VQA
+
+```text
+┌──────────────────────────────┐
+│       SATELLITE IMAGE        │
+│                              │
+│   🏢   🏢       🌳           │
+│        🛣️                    │
+│             💧               │
+└──────────────────────────────┘
+
+Question:
+"What objects are visible in this image?"
+
+                 ↓
+
+Answer:
+"Buildings, roads, vegetation and water are visible."
+
+                 ↓
+
+Visual evidence + execution trace
+```
+
+### Example — Bi-temporal analysis
+
+```text
+        BEFORE IMAGE              AFTER IMAGE
+             │                         │
+             └──────────┬──────────────┘
+                        ▼
+                 Change Detector
+                        │
+                        ▼
+                  Binary Mask
+                        │
+                        ▼
+             Change Statistics
+                        │
+                        ▼
+              Evidence-backed
+                    response
+```
+
+> Replace these conceptual examples with real screenshots/GIFs from the application
+> before using the repository as the primary SIH showcase.
+
+---
+
+# 🚀 Capabilities
+
+| Capability | What the user can do | Current engine |
+|---|---|---|
+| 🔍 **Remote-Sensing VQA** | Ask natural-language questions about imagery | SmolVLM-500M-Instruct + LoRA |
+| 📝 **Scene Captioning** | Generate structured descriptions of scenes | SmolVLM-500M-Instruct + LoRA |
+| 🎯 **Text-Guided Grounding** | Ask where objects/features are located | Grounding DINO |
+| 🔄 **Bi-Temporal Change Detection** | Compare before/after imagery | Custom Siamese U-Net |
+| 💬 **Change-VQA / Follow-up** | Ask questions about detected changes | Change detector + deterministic evidence reasoning |
+| 🌐 **Optical + SAR Fusion** | Analyze co-registered Sentinel-1/2 imagery | Dual-branch gated fusion network |
+| 🛡️ **Reliability Guards** | Detect incompatible/OOD/unreliable cases | Compatibility, hallucination, OOD and scope guards |
+| 🤖 **Agentic Orchestration** | Route a query to the required specialist(s) | Task classifier + orchestrator |
+
+---
+
+# 💡 Innovation
+
+## 1. Natural-language remote-sensing interface
+
+Instead of requiring the user to manually choose a model or GIS workflow, the system
+starts from the question.
+
+```text
+"What changed?"
+       ↓
+Task classification
+       ↓
+Change Detection
+       ↓
+Evidence
+       ↓
+Answer
+```
+
+## 2. Specialist orchestration
+
+SatQuery AI connects multiple remote-sensing capabilities through one controller:
+
+```text
+Natural-language query
+        ↓
+Input / modality inspection
+        ↓
+Compatibility check
+        ↓
+Task classification
+        ↓
+Specialist selection
+        ↓
+Real model inference
+        ↓
+Evidence extraction
+        ↓
+Guard layer
+        ↓
+Answer + visual evidence + trace
+```
+
+## 3. Evidence-grounded response generation
+
+Change detection and Optical+SAR fusion do not rely on unrestricted VLM narration
+for numerical conclusions. Responses are constructed from computed detector/classifier
+outputs.
+
+This design was introduced after observed failures where free-form VLM narration
+could introduce unsupported scene details.
+
+## 4. Failure-aware architecture
+
+The system explicitly handles:
+
+- incompatible image pairs
+- invalid modality combinations
+- out-of-distribution inputs
+- suspicious grounding boxes
+- hallucination-prone caption content
+- unsupported measurements
+
+The objective is not to make every model appear perfect; it is to make model
+limitations visible to the user.
+
+## 5. Multimodal remote-sensing analysis
+
+SatQuery AI combines:
+
+- optical imagery
+- SAR imagery
+- single-image analysis
+- bi-temporal imagery
+- natural-language queries
+- visual evidence
+
+through one application.
+
+---
+
+# 🌍 Potential Applications
+
+The current architecture supports workflows relevant to areas such as:
+
+### 🏙️ Urban Monitoring
+Analysis of built-up areas and changes between observations.
+
+### 🌊 Change / Disaster Assessment
+Before-and-after analysis of remote-sensing imagery.
+
+### 🌾 Agricultural & Land-Cover Analysis
+Natural-language exploration of land-cover composition.
+
+### 🌲 Environmental Monitoring
+Investigation of vegetation and land-cover changes.
+
+### 🛰️ Multi-Modal Earth Observation
+Joint analysis of Optical and SAR observations.
+
+> These are application areas supported or targeted by the system architecture. They
+> should not be presented as production deployments unless an actual deployment has
+> been demonstrated.
+
+---
+
+# 📊 Evaluation
+
+SatQuery AI is evaluated against the public benchmarks identified for the project,
+rather than replacing them with easier substitute datasets.
+
+A key design principle is:
+
+> **Weak results are reported as weaknesses instead of being hidden or replaced by
+> more favorable numbers.**
+
+## Current results
+
+| Benchmark | Task | Current evidence |
+|---|---|---|
+| **BigEarthNet** | VQA / captioning fine-tune validation | Training loss: 0.897 → 0.340; validation loss: 0.559 → 0.345 over 3 epochs; 63–73% held-out accuracy on binary/MCQ-style questions |
+| **RSVQA-LR** | VQA accuracy by category | Official Zenodo release verified; category-level evaluation performed; Count category is weak |
+| **VRSBench** | Captioning / VQA / grounding | Official release confirmed; grounding stress-tested on remote-sensing scenes |
+| **CDVQA** | Change-based VQA | Structural limitation identified: binary change detection lacks semantic class information |
+| **BigEarthNet-19** | Optical + SAR multi-label composition | Macro-F1: **0.482** |
+| **Grounding DINO** | Zero-shot text-guided localization | Targeted 8-scene stress test: 3 correct, 1 partial, 4 failed |
+
+### Important evaluation note
+
+The current README contains benchmark coverage, but some benchmark entries still need
+full numerical reporting before they should be presented as headline performance.
+
+The evaluation table should ultimately report:
+
+```text
+Benchmark
+Task
+Official split
+Number of samples (N)
+Metric
+SatQuery result
+Baseline
+Reference / published result where applicable
+```
+
+This prevents isolated numbers from being interpreted without context.
+
+---
+
+## 📈 Evaluation results currently available
+
+### BigEarthNet-adapted VQA
+
+```text
+Training loss
+0.897 ───────────────────────► 0.340
+
+Validation loss
+0.559 ───────────────────────► 0.345
+
+Training: 3 epochs
+Held-out accuracy: 63–73%
+```
+
+The current implementation uses:
+
+- `SmolVLM-500M-Instruct`
+- PEFT LoRA
+- BigEarthNet-based adaptation
+
+### Optical + SAR Fusion
+
+```text
+Model:
+Dual-branch gated fusion network
+
+Parameters:
+1,045,299
+
+Training:
+20 epochs
+
+Best validation macro-F1:
+0.482
+```
+
+Reported stronger classes include:
+
+| Class | F1 |
+|---|---:|
+| Arable land | 0.91 |
+| Broad-leaved forest | 0.90 |
+| Inland waters | 0.73 |
+| Urban fabric | 0.70 |
+
+Rare classes remain weaker, consistent with the multi-label class imbalance observed
+during evaluation.
+
+---
+
+# 🧪 Evaluation Gaps & Honest Limitations
+
+## Grounding DINO
+
+The current Grounding DINO evaluation is a **targeted stress test**, not a
+statistically representative benchmark.
+
+Current test:
+
+```text
+8 manually verified scenes
+
+Correct     3
+Partial     1
+Failed      4
+```
+
+The observed failure pattern is particularly relevant to:
+
+- dense urban scenes
+- dense industrial scenes
+- very-wide-area imagery
+
+The planned response is a remote-sensing-native grounding upgrade rather than
+representing the current zero-shot result as solved.
+
+## CDVQA
+
+The current change detector produces a **binary change mask**.
+
+Therefore it can answer questions involving:
+
+- whether change occurred
+- where change occurred
+- how much area changed
+- change severity/statistics
+
+But it does not inherently encode semantic classes such as:
+
+```text
+"Did buildings change?"
+"Did roads change?"
+"Did vegetation change?"
+```
+
+A semantic multi-class change detector is therefore a planned architectural upgrade.
+
+## VQA / Captioning confidence
+
+SatQuery AI does not expose token likelihood as a fake "confidence score" for VQA or
+captioning. Token probability is not treated as a correctness probability.
+
+Where meaningful model-derived confidence is available, it is shown separately.
+
+---
+
+# 🧪 Recommended Evaluation Protocol
+
+For reproducible future evaluations, each benchmark result should record:
+
+```text
+Dataset:
+Official release:
+Official split:
+Number of samples:
+Preprocessing:
+Input resolution:
+Checkpoint:
+Model version:
+Inference configuration:
+Random seed:
+Metric:
+Result:
+Baseline:
+Evaluation date:
+```
+
+The repository's `evaluation_results/` directory should contain the generated result
+tables and figures.
+
+Recommended structure:
+
+```text
+evaluation/
+├── configs/
+├── scripts/
+├── baselines/
+├── results/
+├── figures/
+└── README.md
+```
+
+---
+
+# 🔬 Ablation Studies
+
+The most useful next experiments are not simply adding more models. They are
+experiments that demonstrate what each SatQuery component contributes.
+
+## VQA adaptation ablation
+
+```text
+Base SmolVLM
+      vs
+SmolVLM + Remote-Sensing LoRA
+```
+
+Report the same held-out evaluation set for both.
+
+## Orchestrator ablation
+
+```text
+Direct specialist call
+        vs
+Static routing
+        vs
+SatQuery orchestrator
+```
+
+Measure:
+
+- correct task selection
+- execution success
+- invalid-input handling
+- specialist routing errors
+
+## Guard ablation
+
+```text
+Model output without guard
+        vs
+Model output with guard
+```
+
+Measure:
+
+- hallucinated measurements
+- invalid localization
+- OOD cases
+- incompatible-input failures
+
+> These experiments should be added to the repository only after they have actually
+> been run. No baseline or improvement number should be fabricated.
+
+---
+
+# 🏗️ Architecture
+
+```text
+┌──────────────────────────────────────────────────────────────────────────┐
+│                           SATQUERY AI PLATFORM                           │
+├──────────────────────────────────────────────────────────────────────────┤
+│                                                                          │
+│  ┌────────────────────────────────────────────────────────────────────┐  │
+│  │                    Frontend — React + TypeScript + Vite            │  │
+│  │                                                                    │  │
+│  │   Upload Portal   Analysis Console   Execution Trace   History     │  │
+│  └───────────────────────────────┬────────────────────────────────────┘  │
+│                                  │                                       │
+│                                  ▼                                       │
+│  ┌────────────────────────────────────────────────────────────────────┐  │
+│  │                     FastAPI Backend — Python                       │  │
+│  │                                                                    │  │
+│  │  ┌──────────────────────────────────────────────────────────────┐  │  │
+│  │  │                Input Compatibility Layer                     │  │  │
+│  │  │ Modality / Format Check → Pair Validation → Input Guard     │  │  │
+│  │  └──────────────────────────────┬───────────────────────────────┘  │  │
+│  │                                 ▼                                  │  │
+│  │  ┌──────────────────────────────────────────────────────────────┐  │  │
+│  │  │              Task Classifier & Orchestrator                  │  │  │
+│  │  │       Query Intent → Tool Selection → Dispatch              │  │  │
+│  │  └───────────┬────────────┬──────────────┬──────────────────────┘  │  │
+│  │              ▼            ▼              ▼                         │  │
+│  │         ┌─────────┐  ┌──────────┐  ┌──────────────┐               │  │
+│  │         │ RS-VQA  │  │ Change   │  │ Optical+SAR  │               │  │
+│  │         │ /Caption│  │ Detector │  │   Fusion     │               │  │
+│  │         └─────────┘  └──────────┘  └──────────────┘               │  │
+│  │              │            │              │                         │  │
+│  │              └────────────┼──────────────┘                         │  │
+│  │                           ▼                                        │  │
+│  │                  ┌─────────────────┐                               │  │
+│  │                  │ Text Grounding  │                               │  │
+│  │                  │ Grounding DINO  │                               │  │
+│  │                  └────────┬────────┘                               │  │
+│  │                           ▼                                        │  │
+│  │  ┌──────────────────────────────────────────────────────────────┐  │  │
+│  │  │                 Guard + Evidence Assembly                   │  │  │
+│  │  │ Hallucination Guard │ OOD Guard │ Scope Guard │ Validation │  │  │
+│  │  └──────────────────────────────┬───────────────────────────────┘  │  │
+│  │                                 ▼                                  │  │
+│  │                       Answer + Evidence + Trace                   │  │
+│  │                                                                    │  │
+│  │  SQLite Storage              JWT + Google/GitHub OAuth             │  │
+│  └────────────────────────────────────────────────────────────────────┘  │
+└──────────────────────────────────────────────────────────────────────────┘
+```
+
+---
+
+# 🔄 Agentic Workflow
 
 ```mermaid
 graph TD
-    A[📤 Upload imagery + type a query] --> B[🔍 Input / Modality Inspection]
+    A[Upload imagery + natural-language query] --> B[Input / Modality Inspection]
     B --> C{Compatibility Check}
-    C -->|Incompatible| C1[🛑 Explicit error or<br/>degraded warning — never silent]
-    C -->|Compatible| D[📋 Task Classification]
-    D --> E[🔧 Specialist Selection]
-    E --> F[⚙️ Real Model Inference]
-    F --> G[📊 Evidence Extraction]
-    G --> H{🛡️ Guard Layer}
-    H --> I[✅ Response Assembly]
-    I --> J[🖥️ Answer + Visual Evidence + Trace]
 
-    style A fill:#0B2545,color:#fff
-    style C fill:#F5A623,color:#fff
-    style C1 fill:#C0392B,color:#fff
-    style H fill:#9B59B6,color:#fff
-    style J fill:#1B998B,color:#fff
+    C -->|Incompatible| C1[Explicit error or degraded warning]
+    C -->|Compatible| D[Task Classification]
+
+    D --> E[Specialist Selection]
+    E --> F[Real Model Inference]
+    F --> G[Evidence Extraction]
+    G --> H{Guard Layer}
+    H --> I[Response Assembly]
+    I --> J[Answer + Visual Evidence + Execution Trace]
 ```
 
-### Mode 1 — Single-Image VQA / Captioning / Grounding
+### Mode 1 — Single Image
 
-```
-Upload optical or SAR image (GeoTIFF / TIFF / benchmark PNG-JPEG)
-    → Modality & format detection
-    → Task classification (vqa / captioning / grounding)
-    → SmolVLM-500M + LoRA   — OR —   Grounding DINO (zero-shot)
-    → Hallucination guard (captioning) / scope guard (grounding)
-    → Answer + evidence + execution trace
+```text
+Optical / SAR image
+       ↓
+Modality & format detection
+       ↓
+Task classification
+       ↓
+┌──────────────────────────────┐
+│ VQA / Captioning             │ → SmolVLM + LoRA
+│ Grounding                    │ → Grounding DINO
+└──────────────────────────────┘
+       ↓
+Guard layer
+       ↓
+Answer + evidence + trace
 ```
 
-### Mode 2 — Bi-Temporal Change Detection & Change-VQA
+### Mode 2 — Bi-Temporal Change Detection
 
-```
-Upload Before (T1) + After (T2) images, same location
-    → Pair compatibility & dimension validation
-    → Siamese U-Net inference → binary change mask + % changed + severity
-    → OOD guard (compound near-zero-change + z-score check)
-    → Deterministic template answer, built from real detector stats
-    → Conversational follow-up reuses the same computed evidence
+```text
+Before (T1) + After (T2)
+          ↓
+Pair compatibility validation
+          ↓
+Siamese U-Net
+          ↓
+Binary change mask
+          ↓
+% changed + severity + location
+          ↓
+OOD guard
+          ↓
+Deterministic evidence-based answer
+          ↓
+Follow-up questions reuse computed evidence
 ```
 
 ### Mode 3 — Optical + SAR Fusion
 
-```
-Upload co-registered optical (Sentinel-2) + SAR (Sentinel-1) pair
-    → GeoTIFF / SAR calibration handling (linear power vs. dB detection)
-    → Dual-branch gated fusion network → built-up / water / vegetation composition
-    → OOD guard (reused from change detection, generalized to a second modality)
-    → Deterministic template answer, built from real classifier output
+```text
+Sentinel-2 Optical + Sentinel-1 SAR
+                ↓
+        Co-registration /
+        input handling
+                ↓
+        Dual-branch encoders
+                ↓
+         Learned sigmoid gate
+                ↓
+      Multi-label composition
+                ↓
+        OOD guard + validation
+                ↓
+        Evidence-based answer
 ```
 
 ---
 
-## 🔬 Specialist Tool Registry
+# 🤖 Specialist Tool Registry
 
 | Specialist | Engine | Domain | Status |
-|:---|:---|:---|:---:|
+|---|---|---|---|
 | **RS-VQA** | SmolVLM-500M-Instruct + LoRA | BigEarthNet-adapted VQA | 🟢 Active |
-| **RS Captioning** | SmolVLM-500M-Instruct + LoRA | Scene description + hallucination guard | 🟢 Active |
-| **Text-Guided Grounding** | Grounding DINO | Zero-shot open-vocabulary localization | 🟢 Active |
+| **RS Captioning** | SmolVLM-500M-Instruct + LoRA | Scene description | 🟢 Active |
+| **Text-Guided Grounding** | Grounding DINO | Zero-shot localization | 🟢 Active |
 | **Change Detector** | Custom Siamese U-Net | LEVIR-CD building change | 🟢 Active |
-| **Change-VQA** | Siamese U-Net + SmolVLM temporal reasoning | Deterministic change narratives | 🟢 Active |
-| **Optical+SAR Fusion** | Custom dual-branch gated fusion net | Sentinel-1/Sentinel-2 joint analysis | 🟢 Active |
-| **Hallucination Guard** | Rule-based filter | Fabricated place/area/date detection | 🟢 Active |
-| **OOD Guard** | Statistical z-score check | Cross-dataset distribution-shift detection | 🟢 Active |
-| **Semantic Change Detection** | Multi-class upgrade to the Siamese U-Net | Class-aware change ("what changed") | 🟢 Active |
+| **Change-VQA** | Change detector + evidence reasoning | Change narratives | 🟢 Active |
+| **Optical+SAR Fusion** | Dual-branch gated network | Sentinel-1/2 analysis | 🟢 Active |
+| **Hallucination Guard** | Rule-based filter | Unsupported generated details | 🟢 Active |
+| **OOD Guard** | Statistical z-score check | Distribution-shift detection | 🟢 Active |
+| **Semantic Change Detection** | Multi-class change upgrade | Class-aware change | 🔵 Roadmapped |
+| **LAE-DINO Grounding** | Remote-sensing-native detector | Dense/wide-area grounding | 🔵 Roadmapped |
 
 ---
 
-## 🏆 Model Zoo
+# 🧠 Model Details
 
-### RS-VQA / Captioning — SmolVLM-500M-Instruct + LoRA
+## RS-VQA / Captioning — SmolVLM-500M-Instruct + LoRA
 
 | Detail | Value |
-|:---|:---|
+|---|---|
 | Base model | `HuggingFaceTB/SmolVLM-500M-Instruct` |
-| Adaptation | PEFT LoRA, fine-tuned on BigEarthNet.txt |
-| Training | 3 epochs — train loss 0.897 → 0.340, val loss 0.559 → 0.345 (monotonic, no train/val gap) |
+| Adaptation | PEFT LoRA |
+| Training data | BigEarthNet-based adaptation |
+| Training | 3 epochs |
+| Train loss | 0.897 → 0.340 |
+| Validation loss | 0.559 → 0.345 |
 | Held-out accuracy | 63–73% on binary/MCQ-style questions |
-| Safety layer | Rule-based hallucination guard (fabricated country/area/date filtering) |
+| Safety layer | Rule-based hallucination guard |
 
-### Change Detection — Custom Siamese U-Net
+## Change Detection — Custom Siamese U-Net
 
 | Detail | Value |
-|:---|:---|
-| Architecture | True weight-shared Siamese encoder, multi-level feature differencing (FC-Siam-diff style) |
+|---|---|
+| Architecture | Weight-shared Siamese encoder |
+| Feature processing | Multi-level feature differencing |
 | Parameters | 7.76M |
 | Training data | LEVIR-CD |
-| Output | Binary change mask + % changed + severity + location |
-| Answer generation | Deterministic template from real detector stats — no free-form VLM narration |
+| Output | Binary change mask |
+| Derived statistics | % changed, severity, location |
+| Answer generation | Deterministic templates from detector statistics |
 
-### Optical + SAR Fusion — Dual-Branch Gated Fusion Network
-
-| Detail | Value |
-|:---|:---|
-| Architecture | Two independent CNN encoders (optical 3-ch, SAR 2-ch) + learned sigmoid gate |
-| Parameters | 1,045,299 (1.05M) |
-| Training | 20 epochs on BigEarthNet Sentinel-1/2 pairs, weak multi-label supervision |
-| Best macro-F1 | 0.482 (val loss 0.173) |
-| Strong classes | Arable land 0.91, Broad-leaved forest 0.90, Inland waters 0.73, Urban fabric 0.70 |
-
-### Grounding — Grounding DINO (Zero-Shot)
+## Optical + SAR Fusion
 
 | Detail | Value |
-|:---|:---|
-| Mode | Zero-shot open-vocabulary detection, no remote-sensing fine-tune |
-| Output | Bounding boxes + real detection confidence |
-| Safety layer | Scope guard flags near-full-image boxes as low-confidence localization |
+|---|---|
+| Architecture | Dual-branch gated fusion |
+| Optical input | 3-channel |
+| SAR input | 2-channel |
+| Fusion | Learned sigmoid gate |
+| Parameters | 1,045,299 |
+| Training | 20 epochs |
+| Dataset | BigEarthNet Sentinel-1/2 pairs |
+| Supervision | Weak multi-label |
+| Best macro-F1 | 0.482 |
+
+## Grounding — Grounding DINO
+
+| Detail | Value |
+|---|---|
+| Mode | Zero-shot open-vocabulary detection |
+| Remote-sensing fine-tune | None in current implementation |
+| Output | Bounding boxes + detection confidence |
+| Guard | Near-full-image boxes flagged as unreliable localization |
 
 ---
 
-## 🛡️ Safety & Reliability Engineering
+# 🛡️ Safety & Reliability Engineering
 
-This is the section most teams skip. We didn't.
+Reliability is treated as part of the architecture rather than an afterthought.
 
-- **Deterministic, evidence-grounded answers** for change detection and fusion — both were caught early on inventing details (a "parking lot" that didn't exist) when left to free-form VLM narration. Both now build answer text exclusively from real, computed detector output.
-- **Hallucination guard** — strips fabricated country names, invented area/sqm figures, and made-up capture dates from captioning output. Every rule was added after a specific observed failure, then tested against false-positive traps (pixel dimensions, aspect ratios, scale bars) so it doesn't over-fire.
-- **Out-of-distribution guard** — statistical z-score comparison against a training-distribution reference profile, extended to a compound two-tier check after cross-dataset testing (LEVIR-CD → OSCD, BigEarthNet → SEN12MS-CR) revealed a real coverage gap in the original design.
-- **Grounding scope guard** — a bounding box covering most of the image is flagged as a failed localization, not returned as a confident detection.
-- **No silent failures** — every incompatible-input scenario (wrong image count, mismatched pair dimensions, SAR-only pair submitted as cross-modal) either hard-errors with a specific message or soft-degrades with an explicit, traced warning, verified with negative controls.
+## Hallucination Guard
+
+Captioning output is filtered for unsupported details such as:
+
+- fabricated country names
+- invented area measurements
+- made-up capture dates
+
+Rules were tested against false-positive traps such as:
+
+- pixel dimensions
+- aspect ratios
+- scale bars
+
+## Deterministic Evidence Generation
+
+Change detection and fusion outputs are built from actual computed statistics instead
+of allowing unrestricted VLM narration to invent measurements or scene details.
+
+## OOD Guard
+
+A statistical distribution-shift check compares input characteristics against a
+training-distribution reference profile.
+
+The design was extended after cross-dataset testing revealed coverage gaps.
+
+## Grounding Scope Guard
+
+Bounding boxes covering most of the image are treated as suspicious localization
+rather than automatically being presented as reliable object detections.
+
+## No Silent Failures
+
+Invalid or incompatible scenarios produce an explicit error or traced degraded
+warning rather than silently executing an inappropriate model.
+
+Examples include:
+
+- wrong number of images
+- mismatched pair dimensions
+- incompatible modalities
+- invalid cross-modal input
 
 ---
 
-## 🚀 Getting Started
+# 📂 Project Structure
 
-### Backend
-
-```bash
-cd backend
-python -m venv venv
-./venv/Scripts/activate        # Windows
-# source venv/bin/activate     # macOS / Linux
-
-pip install -r requirements.txt
-uvicorn app.main:app --reload --host 127.0.0.1 --port 8000
-```
-
-- API docs: `http://127.0.0.1:8000/docs`
-- Health check: `http://127.0.0.1:8000/health`
-
-### Frontend
-
-```bash
-cd frontend
-npm install
-cp .env.example .env      # VITE_API_URL=http://localhost:8000
-npm run dev
-```
-
-- App: `http://localhost:5173`
-
-> **Note:** Real-mode inference loads SmolVLM-500M, the Siamese U-Net checkpoint, the fusion network, and Grounding DINO — set `VQA_MODE` / `CHANGE_MODE` / `FUSION_MODE` / `GROUNDING_MODE=real` in `backend/.env` (default is `mock` for fast, GPU-free routing tests).
-
----
-
-## 📂 Project Structure
-
-```
+```text
 SatQuery-AI/
+│
 ├── backend/
 │   ├── app/
 │   │   ├── main.py
-│   │   ├── models.py                 # SQLAlchemy models (User, AnalysisRecord, ...)
-│   │   ├── routers/                  # auth, analysis, reports, health
+│   │   ├── models.py
+│   │   ├── routers/
+│   │   │   ├── auth.py
+│   │   │   ├── analysis.py
+│   │   │   ├── reports.py
+│   │   │   └── health.py
 │   │   └── services/
-│   │       ├── orchestrator.py       # agentic controller
+│   │       ├── orchestrator.py
 │   │       ├── task_classifier.py
 │   │       ├── vqa_service.py
 │   │       ├── change_service.py
@@ -329,57 +804,324 @@ SatQuery-AI/
 │   │       ├── hallucination_guard.py
 │   │       ├── ood_guard.py
 │   │       └── geo_preprocessing.py
-│   ├── tests/                        # orchestrator routing + compatibility tests
-│   └── evaluation_results/           # RSVQA / VRSBench / CDVQA / fusion results
+│   │
+│   ├── tests/
+│   └── evaluation_results/
+│
 ├── frontend/
 │   └── src/
 │       ├── components/
 │       └── pages/
-└── README.md
+│
+├── evaluation/
+│   ├── configs/
+│   ├── scripts/
+│   ├── baselines/
+│   ├── results/
+│   └── figures/
+│
+├── docs/
+│   ├── images/
+│   ├── architecture.md
+│   ├── evaluation.md
+│   ├── models.md
+│   ├── safety.md
+│   ├── datasets.md
+│   └── api.md
+│
+├── .env.example
+├── .gitignore
+├── README.md
+└── SECURITY.md
 ```
 
 ---
 
-## 📡 API Overview
+# ⚙️ Getting Started
 
-Interactive Swagger UI at [`http://localhost:8000/docs`](http://localhost:8000/docs) once the backend is running.
+## Backend
+
+```bash
+cd backend
+
+python -m venv venv
+```
+
+### Windows
+
+```bash
+venv\Scripts\activate
+```
+
+### macOS / Linux
+
+```bash
+source venv/bin/activate
+```
+
+Install dependencies:
+
+```bash
+pip install -r requirements.txt
+```
+
+Start the API:
+
+```bash
+uvicorn app.main:app --reload --host 127.0.0.1 --port 8000
+```
+
+Backend:
+
+```text
+http://127.0.0.1:8000
+```
+
+Swagger:
+
+```text
+http://127.0.0.1:8000/docs
+```
+
+Health check:
+
+```text
+http://127.0.0.1:8000/health
+```
+
+## Frontend
+
+```bash
+cd frontend
+npm install
+```
+
+Create your environment file:
+
+```bash
+cp .env.example .env
+```
+
+Configure:
+
+```env
+VITE_API_URL=http://localhost:8000
+```
+
+Start:
+
+```bash
+npm run dev
+```
+
+Frontend:
+
+```text
+http://localhost:5173
+```
+
+---
+
+# 🧪 Real Mode vs Mock Mode
+
+The backend supports mock routing for fast, GPU-free development/testing.
+
+Real inference loads the actual model components.
+
+Configure the relevant environment variables:
+
+```env
+VQA_MODE=real
+CHANGE_MODE=real
+FUSION_MODE=real
+GROUNDING_MODE=real
+```
+
+Default development behavior may use mock modes to avoid loading the complete model
+stack.
+
+> Do not publish real credentials, private model access tokens, database passwords,
+> OAuth secrets, or service-role keys in the repository.
+
+---
+
+# 📡 API Overview
 
 | Method | Endpoint | Purpose | Auth |
-|:---:|:---|:---|:---:|
+|---|---|---|---|
 | `POST` | `/analysis` | Run a query against uploaded imagery | Optional |
 | `GET` | `/analysis/{id}` | Retrieve a past analysis | Optional |
-| `GET` | `/analysis/history` | List past analyses for the user | Required |
+| `GET` | `/analysis/history` | List analyses for the user | Required |
 | `POST` | `/auth/register` | Create an account | — |
 | `POST` | `/auth/login` | Email/password login | — |
-| `GET` | `/auth/google/login` / `/auth/github/login` | OAuth login | — |
+| `GET` | `/auth/google/login` | Google OAuth login | — |
+| `GET` | `/auth/github/login` | GitHub OAuth login | — |
 | `GET` | `/auth/me` | Current user profile | Required |
 | `GET` | `/health` | Liveness check | — |
 
-*(See `backend/app/routers/` for the current authoritative route list.)*
+The authoritative route list is defined by the backend router implementation.
 
 ---
 
-## 📊 Evaluation
+# 🔐 Security
 
-Evaluated against the exact public benchmarks the problem statement names — not friendlier substitutes — with sourcing verified against the official releases (Zenodo record match, image-and-answer-level cross-check) before a single number was computed.
+Before making this repository public:
 
-| Benchmark | Task | Result |
-|:---|:---|:---|
-| **BigEarthNet** (held-out) | VQA/captioning fine-tune validation | Monotonic loss improvement over 3 epochs; 63–73% held-out accuracy on binary/MCQ questions |
-| **RSVQA-LR** | VQA accuracy by category | Sourcing verified pixel-for-pixel against the official Zenodo release; strong on presence/comparison categories |
-| **VRSBench** | Captioning / VQA / grounding | Official release confirmed; grounding stress-tested against real remote-sensing scenes across scene densities |
-| **CDVQA** | Change-based VQA | Structural finding: a class-aware upgrade to the change detector is the identified next step to unlock class-specific change questions|
-| **Optical + SAR Fusion** | Multi-label composition (BigEarthNet-19) | Macro-F1 0.482; strong performance on high-support classes (Arable land 0.91, Urban fabric 0.70) |
+- Never commit `.env` files.
+- Never commit API keys.
+- Never commit database passwords.
+- Never commit OAuth secrets.
+- Never commit JWT signing secrets.
+- Never commit private SSH keys.
+- Never commit cloud credentials.
+- Rotate any credential that has previously been committed.
+- Use GitHub secret scanning / push protection where available.
+- Keep privileged backend credentials out of frontend code.
 
-Every number was produced by running inference through the **real orchestrator pipeline** against the actual official benchmark data — not a bypassed direct model call.
+Recommended files:
+
+```text
+.env
+.env.*
+!.env.example
+
+*.pem
+*.key
+
+__pycache__/
+*.pyc
+.venv/
+node_modules/
+dist/
+build/
+```
+
+Large model checkpoints should be handled separately from normal source-code commits
+where appropriate.
 
 ---
 
-## 👥 Team
+# 🧭 Roadmap
 
-<p align="center"><strong>Orbital Minds 133</strong></p>
-<p align="center">Smart India Hackathon 2026 · Problem Statement 26167 · Indian Space Research Organisation (ISRO)</p>
+## Phase 1 — Close Evaluation Gaps
+
+- Complete quantitative VRSBench reporting
+- Complete quantitative CDVQA reporting
+- Add baseline comparisons
+- Expand grounding evaluation
+- Add reproducible evaluation scripts
+- Semantic multi-class change detection
+- Remote-sensing-native grounding upgrade
+- Confidence calibration research for VQA/captioning
+
+## Phase 2 — Mission-Oriented Workflows
+
+- Scheduled monitoring and change alerts
+- GIS map interface with georeferenced overlays
+- Automated Sentinel-1/2 acquisition
+- Flood extent workflow
+- Crop-stage change workflow
+- Encroachment detection
+- Deforestation tracking
+
+## Phase 3 — Platform Hardening
+
+- Multi-user organizations
+- Per-account data isolation
+- Human-in-the-loop validation
+- Model registry and versioning
+- Expanded geographic/entity reasoning
+
+## Long-Term Direction
+
+Explore a continuously running Earth-observation monitoring layer using suitable
+optical and SAR imagery while preserving the evidence-backed orchestration design.
 
 ---
 
-<p align="center"><em>Built for judges who read the code, not just the demo.</em></p>
+# 📚 Technical Documentation
+
+Detailed documentation should live separately from the top-level project story:
+
+```text
+docs/
+├── architecture.md    # System and service architecture
+├── evaluation.md      # Benchmark protocols, metrics and results
+├── models.md          # Model architectures and checkpoints
+├── safety.md          # Guards, failure modes and negative controls
+├── datasets.md        # Dataset versions, splits and preprocessing
+└── api.md             # Endpoint and request/response documentation
+```
+
+The README is intentionally designed as the **project overview**. Detailed
+implementation notes belong in these documents so that judges can understand the
+project quickly without removing technical depth for developers and reviewers.
+
+---
+
+# 👥 Team
+
+<p align="center">
+  <strong>Orbital Minds 133</strong>
+</p>
+
+<p align="center">
+  Smart India Hackathon 2026 · Problem Statement 26167
+</p>
+
+---
+
+# 📌 Current Limitations
+
+SatQuery AI is an active research/engineering project, not a claim of solved
+general-purpose remote-sensing intelligence.
+
+Current limitations include:
+
+- Binary rather than semantic change detection
+- Weak fine-grained counting performance on RSVQA-LR
+- Zero-shot Grounding DINO degradation on dense/wide-area imagery
+- Lower performance on rare Optical+SAR classes
+- Incomplete quantitative reporting for some benchmark tasks
+- Limited size of the current Grounding DINO stress-test set
+
+These limitations are explicitly retained because reproducible evaluation should show
+where the system currently works and where it does not.
+
+---
+
+# 🏁 Why SatQuery AI
+
+SatQuery AI brings multiple remote-sensing capabilities behind a single interaction:
+
+```text
+                    ASK
+                     │
+                     ▼
+              Natural Language
+                     │
+                     ▼
+               ORCHESTRATE
+                     │
+       ┌─────────────┼─────────────┐
+       ▼             ▼             ▼
+      VQA          CHANGE       GROUNDING
+       │          DETECTION         │
+       └─────────────┼──────────────┘
+                     ▼
+                  EVIDENCE
+                     │
+                     ▼
+             ANSWER + VISUALS
+                     +
+                EXECUTION TRACE
+```
+
+The goal is not simply to place a language model on top of satellite imagery.
+
+The goal is to make remote-sensing analysis **queryable, composable, traceable, and
+explicit about its limitations**.
+
+<p align="center">
+  <em>Built for judges who read the code, not just the demo.</em>
+</p>
