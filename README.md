@@ -369,7 +369,7 @@ Evaluated against the exact public benchmarks the problem statement names — no
 | **BigEarthNet** (held-out) | VQA/captioning fine-tune validation | Monotonic loss improvement over 3 epochs; 63–73% held-out accuracy on binary/MCQ questions |
 | **RSVQA-LR** | VQA accuracy by category | Sourcing verified pixel-for-pixel against the official Zenodo release; strong on presence/comparison categories |
 | **VRSBench** | Captioning / VQA / grounding | Official release confirmed; grounding stress-tested against real remote-sensing scenes across scene densities |
-| **CDVQA** | Change-based VQA | Structural finding: a class-aware upgrade to the change detector is the identified next step to unlock class-specific change questions — already scoped in the [Roadmap](#-roadmap) |
+| **CDVQA** | Change-based VQA | Structural finding: a class-aware upgrade to the change detector is the identified next step to unlock class-specific change questions|
 | **Optical + SAR Fusion** | Multi-label composition (BigEarthNet-19) | Macro-F1 0.482; strong performance on high-support classes (Arable land 0.91, Urban fabric 0.70) |
 
 Every number was produced by running inference through the **real orchestrator pipeline** against the actual official benchmark data — not a bypassed direct model call.
