@@ -25,7 +25,6 @@
   <a href="#-safety--reliability-engineering">Safety Engineering</a> •
   <a href="#-getting-started">Getting Started</a> •
   <a href="#-evaluation">Evaluation</a> •
-  <a href="#-roadmap">Roadmap</a> •
   <a href="#-team">Team</a>
 </p>
 
@@ -374,29 +373,6 @@ Evaluated against the exact public benchmarks the problem statement names — no
 | **Optical + SAR Fusion** | Multi-label composition (BigEarthNet-19) | Macro-F1 0.482; strong performance on high-support classes (Arable land 0.91, Urban fabric 0.70) |
 
 Every number was produced by running inference through the **real orchestrator pipeline** against the actual official benchmark data — not a bypassed direct model call.
-
----
-
-## 🗺️ Roadmap
-
-**Phase 1 — Close the evaluation gaps (0–1 month)**
-- Semantic, multi-class change detection to unlock class-specific CDVQA-style questions
-- LAE-DINO integration for remote-sensing-native grounding
-- Confidence calibration research for VQA/captioning
-
-**Phase 2 — Mission-ready workflows (1–3 months)**
-- Scheduled monitoring & change alerts
-- GIS map interface with georeferenced overlays
-- Automated Sentinel-1/2 acquisition
-- Domain playbooks: flood extent, crop-stage change, encroachment detection, deforestation tracking
-
-**Phase 3 — Platform hardening (3–6 months)**
-- Multi-user organizations with per-account data isolation
-- Human-in-the-loop validation
-- Model registry & versioning
-- General-purpose geo-NER for the hallucination guard
-
-**Long-term** — A continuously running ISRO/SAC monitoring layer over Cartosat-2S optical and RISAT SAR imagery, surfacing evidence-backed alerts at national scale, using the same agentic pipeline demonstrated here.
 
 ---
 
