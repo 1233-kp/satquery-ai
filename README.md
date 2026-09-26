@@ -141,7 +141,23 @@ Mismatched pairs (wrong modality count, dimension mismatch, SAR-only submitted a
 
 ## Screenshots
 
-> Add screenshots or a short GIF of the console here — the input-mode selector, an execution trace panel, and a change-detection result with its mask overlay are the most convincing single frames for a reader skimming the repo.
+### Hero Page
+![Hero Page](screenshots/hero.png)
+
+### Overview/Dashboard
+![Overview](screenshots/overview.png)
+
+### Single Image Analysis
+![Sinlge Image-Analysis](screenshots/single_image.png)
+
+### Execution_trace
+![Execution-Trace-Page](screenshots/execution_trace.png)
+
+### Bitemporal-Visual-Evidence
+![Bi-temporal](screenshots/bitemporal-visual-evidence.png)
+
+### Optical_SAR_Fusion
+![Optical-SAR-fusion](screenshots/optical_sar_geotiff.png)
 
 ## Getting Started
 
